@@ -23,7 +23,10 @@ void __stdcall on_dll_detach()
 bool __stdcall DllMain(void* instance, unsigned long reason_to_call, void* reserved)
 {
 	if (reason_to_call == DLL_PROCESS_ATTACH)
-		CreateThread(0, 0, on_dll_attach, instance, 0, 0);
+	{
+		auto h = CreateThread(0, 0, on_dll_attach, instance, 0, 0);
+		CloseHandle(h);
+	}
 	else if (reason_to_call == DLL_PROCESS_DETACH)
 		on_dll_detach();
 
