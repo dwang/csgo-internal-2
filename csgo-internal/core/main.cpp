@@ -24,6 +24,7 @@ bool __stdcall DllMain(void* instance, unsigned long reason_to_call, void* reser
 {
 	if (reason_to_call == DLL_PROCESS_ATTACH)
 	{
+		DisableThreadLibraryCalls(reinterpret_cast<HMODULE>(instance));
 		auto h = CreateThread(0, 0, on_dll_attach, instance, 0, 0);
 		CloseHandle(h);
 	}
