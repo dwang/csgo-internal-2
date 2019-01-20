@@ -2,9 +2,11 @@
 
 unsigned long __stdcall on_dll_attach(void* reserved)
 {
+#ifdef _DEBUG
 	AllocConsole();
 	freopen_s((FILE**)stdin, "CONIN$", "r", stdin);
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
+#endif
 
 	while (!GetAsyncKeyState(VK_END))
 		std::this_thread::sleep_for(std::chrono::milliseconds(50));
@@ -15,9 +17,11 @@ unsigned long __stdcall on_dll_attach(void* reserved)
 
 void __stdcall on_dll_detach()
 {
+#ifdef _DEBUG
 	fclose((FILE*)stdin);
 	fclose((FILE*)stdout);
 	FreeConsole();
+#endif
 }
 
 bool __stdcall DllMain(void* instance, unsigned long reason_to_call, void* reserved)
