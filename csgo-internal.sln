@@ -7,18 +7,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "csgo-internal", "csgo-inter
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
-		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B77D76FD-D047-4AB9-8253-AB5E7F4FAD4B}.Debug|x64.ActiveCfg = Debug|x64
-		{B77D76FD-D047-4AB9-8253-AB5E7F4FAD4B}.Debug|x64.Build.0 = Debug|x64
 		{B77D76FD-D047-4AB9-8253-AB5E7F4FAD4B}.Debug|x86.ActiveCfg = Debug|Win32
 		{B77D76FD-D047-4AB9-8253-AB5E7F4FAD4B}.Debug|x86.Build.0 = Debug|Win32
-		{B77D76FD-D047-4AB9-8253-AB5E7F4FAD4B}.Release|x64.ActiveCfg = Release|x64
-		{B77D76FD-D047-4AB9-8253-AB5E7F4FAD4B}.Release|x64.Build.0 = Release|x64
 		{B77D76FD-D047-4AB9-8253-AB5E7F4FAD4B}.Release|x86.ActiveCfg = Release|Win32
 		{B77D76FD-D047-4AB9-8253-AB5E7F4FAD4B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
