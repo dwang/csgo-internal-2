@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -75,10 +75,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="core\hooks\hooks.cpp" />
     <ClCompile Include="core\main.cpp" />
+    <ClCompile Include="dependencies\interfaces\interfaces.cpp" />
+    <ClCompile Include="dependencies\utilities\utilities.cpp" />
+    <ClCompile Include="sdk\math\vector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\hooks\hooks.hpp" />
     <ClInclude Include="dependencies\common_includes.hpp" />
+    <ClInclude Include="dependencies\interfaces\ibaseclientdll.hpp" />
+    <ClInclude Include="dependencies\interfaces\iclientmode.hpp" />
+    <ClInclude Include="dependencies\interfaces\interfaces.hpp" />
+    <ClInclude Include="dependencies\utilities\singleton.hpp" />
+    <ClInclude Include="dependencies\utilities\utilities.hpp" />
+    <ClInclude Include="dependencies\utilities\vmt.hpp" />
+    <ClInclude Include="sdk\classes\client_class.hpp" />
+    <ClInclude Include="sdk\classes\c_usercmd.hpp" />
+    <ClInclude Include="sdk\classes\recv_props.hpp" />
+    <ClInclude Include="sdk\sdk.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,6 +8,9 @@ unsigned long __stdcall on_dll_attach(void* reserved)
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
 #endif
 
+	interfaces::get().initialize();
+	hooks::get().initialize();
+
 	while (!GetAsyncKeyState(VK_END))
 		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
@@ -33,7 +36,15 @@ bool __stdcall DllMain(void* instance, unsigned long reason_to_call, void* reser
 		CloseHandle(h);
 	}
 	else if (reason_to_call == DLL_PROCESS_DETACH)
+	{
+		if (!reserved)
+		{
+			hooks::get().restore();
+			std::this_thread::sleep_for(std::chrono::seconds(1));
+		}
+
 		on_dll_detach();
+	}
 
 	return true;
 }

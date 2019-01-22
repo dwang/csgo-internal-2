@@ -4,3 +4,14 @@
 #include <Windows.h>
 #include <iostream>
 #include <thread>
+#include <cstdint>
+#include <memory>
+
+#include "utilities/singleton.hpp"
+#include "utilities/vmt.hpp"
+#include "utilities/utilities.hpp"
+
+#include "interfaces/interfaces.hpp"
+
+#include "../sdk/sdk.hpp"
+#include "../core/hooks/hooks.hpp"
