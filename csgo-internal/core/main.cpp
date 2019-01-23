@@ -9,6 +9,8 @@ unsigned long __stdcall on_dll_attach(void* reserved)
 #endif
 
 	interfaces::get().initialize();
+	netvar_manager::get().initialize(interfaces::get().client->get_client_classes());
+	netvar_manager::get().dump_netvars(interfaces::get().client->get_client_classes());
 	hooks::get().initialize();
 
 	while (!GetAsyncKeyState(VK_END))

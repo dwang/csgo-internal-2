@@ -22,7 +22,10 @@ bool __stdcall hooks::create_move(float frame_time, c_usercmd* user_cmd)
 	if (!user_cmd || !user_cmd->command_number)
 		return o_create_move;
 
-	printf("%d\n", user_cmd->tick_count);
+	if (!interfaces::get().entity_list->get_client_entity(interfaces::get().engine->get_local_player()))
+		return o_create_move;
+
+	bunnyhop::get().create_move(user_cmd);
 
 	return false;
 }

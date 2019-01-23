@@ -75,24 +75,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="core\features\bunnyhop.cpp" />
     <ClCompile Include="core\hooks\hooks.cpp" />
     <ClCompile Include="core\main.cpp" />
     <ClCompile Include="dependencies\interfaces\interfaces.cpp" />
+    <ClCompile Include="dependencies\utilities\netvars.cpp" />
     <ClCompile Include="dependencies\utilities\utilities.cpp" />
     <ClCompile Include="sdk\math\vector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\features\bunnyhop.hpp" />
+    <ClInclude Include="core\features\features.hpp" />
     <ClInclude Include="core\hooks\hooks.hpp" />
     <ClInclude Include="dependencies\common_includes.hpp" />
     <ClInclude Include="dependencies\interfaces\ibaseclientdll.hpp" />
+    <ClInclude Include="dependencies\interfaces\icliententitylist.hpp" />
     <ClInclude Include="dependencies\interfaces\iclientmode.hpp" />
     <ClInclude Include="dependencies\interfaces\interfaces.hpp" />
+    <ClInclude Include="dependencies\interfaces\ivengineclient.hpp" />
+    <ClInclude Include="dependencies\utilities\fnv.hpp" />
+    <ClInclude Include="dependencies\utilities\netvars.hpp" />
     <ClInclude Include="dependencies\utilities\singleton.hpp" />
     <ClInclude Include="dependencies\utilities\utilities.hpp" />
     <ClInclude Include="dependencies\utilities\vmt.hpp" />
     <ClInclude Include="sdk\classes\client_class.hpp" />
     <ClInclude Include="sdk\classes\c_usercmd.hpp" />
+    <ClInclude Include="sdk\classes\entity.hpp" />
     <ClInclude Include="sdk\classes\recv_props.hpp" />
+    <ClInclude Include="sdk\math\vector.hpp" />
     <ClInclude Include="sdk\sdk.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

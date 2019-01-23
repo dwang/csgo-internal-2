@@ -69,7 +69,7 @@ public:
 class recv_table
 {
 public:
-	recv_prop * props;
+	recv_prop* props;
 	int props_count;
 	void* decoder_ptr;
 	char* table_name;
