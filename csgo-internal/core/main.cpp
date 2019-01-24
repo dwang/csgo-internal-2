@@ -13,7 +13,10 @@ unsigned long __stdcall on_dll_attach(void* reserved)
 	netvar_manager::get().dump_netvars(interfaces::get().client->get_client_classes());
 	hooks::get().initialize();
 
-	while (!GetAsyncKeyState(VK_END))
+	hotkeys::get().add(VK_INSERT, []() { menu::get().opened = !menu::get().opened; });
+	hotkeys::get().add(VK_END, []() { globals::get().unload = true; });
+
+	while (!globals::get().unload)
 		std::this_thread::sleep_for(std::chrono::milliseconds(50));
 
 	FreeLibraryAndExitThread(reinterpret_cast<HMODULE>(reserved), 0);

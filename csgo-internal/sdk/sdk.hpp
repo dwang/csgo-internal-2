@@ -6,3 +6,7 @@
 #include "classes/entity.hpp"
 
 #include "math/vector.hpp"
+
+#include "misc/color.hpp"
+
+#include "structs/vertex_t.hpp"
