@@ -84,6 +84,10 @@ void menu::initialize(IDirect3DDevice9* device)
 	render_tab["misc"] = []()
 	{
 		ImGui::Checkbox("bunnyhop", &settings::get().misc.bunnyhop);
+		if (ImGui::Button("unload", ImVec2(100, 30)))
+		{
+			globals::get().unload = true;
+		}
 	};
 
 	render_tab["skins"] = []()

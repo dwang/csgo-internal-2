@@ -23,6 +23,8 @@ void hooks::initialize()
 
 void hooks::restore()
 {
+	interfaces::get().input_system->enable_input(true);
+
 	clientmode_hook->release();
 	panel_hook->release();
 	direct3d_hook->release();
