@@ -8,6 +8,7 @@ unsigned long __stdcall on_dll_attach(void* reserved)
 	freopen_s((FILE**)stdout, "CONOUT$", "w", stdout);
 #endif
 
+	utilities::get().get_handle_safe("serverbrowser.dll");
 	interfaces::get().initialize();
 	netvar_manager::get().initialize(interfaces::get().client->get_client_classes());
 	netvar_manager::get().dump_netvars(interfaces::get().client->get_client_classes());

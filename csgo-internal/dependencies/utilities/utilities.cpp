@@ -1,5 +1,13 @@
 #include "../common_includes.hpp"
 
+HMODULE utilities::get_handle_safe(std::string handle)
+{
+	while (!GetModuleHandleA(handle.c_str()))
+		Sleep(50);
+
+	return GetModuleHandleA(handle.c_str());
+}
+
 std::uint8_t* utilities::pattern_scan(void* module, const char* signature)
 {
 	static auto pattern_to_byte = [](const char* pattern)

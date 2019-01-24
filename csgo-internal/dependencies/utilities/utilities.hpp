@@ -8,4 +8,5 @@ class utilities : public singleton<utilities>
 {
 public:
 	std::uint8_t* pattern_scan(void* module, const char* signature);
+	HMODULE get_handle_safe(std::string handle);
 };
