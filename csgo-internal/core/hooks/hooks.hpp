@@ -23,7 +23,7 @@ public:
 	WNDPROC original_wndproc;
 
 	using create_move_fn = bool(__thiscall*)(i_client_mode*, float, c_usercmd*);
-	using paint_traverse_fn = void(__thiscall *)(i_panel*, unsigned int, bool, bool);
+	using paint_traverse_fn = void(__thiscall*)(i_panel*, unsigned int, bool, bool);
 	using end_scene_fn = long(__stdcall*)(IDirect3DDevice9*);
 	using reset_fn = long(__stdcall*)(IDirect3DDevice9*, D3DPRESENT_PARAMETERS*);
 

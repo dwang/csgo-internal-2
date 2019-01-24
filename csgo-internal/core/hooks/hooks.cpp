@@ -41,7 +41,8 @@ bool __stdcall hooks::create_move(float frame_time, c_usercmd* user_cmd)
 	if (!interfaces::get().entity_list->get_client_entity(interfaces::get().engine->get_local_player()))
 		return o_create_move;
 
-	bunnyhop::get().create_move(user_cmd);
+	if (settings::get().misc.bunnyhop)
+		bunnyhop::get().create_move(user_cmd);
 
 	return false;
 }
@@ -68,15 +69,14 @@ void __stdcall hooks::paint_traverse(unsigned int panel, bool force_repaint, boo
 	}
 	else if (_panel == panel)
 	{
-		render::get().draw_text(1, 1, render::get().watermark_font, "csgo-internal - " __DATE__, false, color(255, 255, 255));
+		if (settings::get().visuals.watermark)
+			render::get().draw_text(1, 1, render::get().watermark_font, "csgo-internal - " __DATE__, false, color(255, 255, 255));
 	}
 }
 
 long __stdcall hooks::end_scene(IDirect3DDevice9* device)
 {
 	static auto o_end_scene = hooks::get().direct3d_hook->original<end_scene_fn>(indexes::end_scene);
-
-	bool mouse_enabled = true;
 
 	if (!globals::get().d3d_init)
 	{
@@ -91,18 +91,12 @@ long __stdcall hooks::end_scene(IDirect3DDevice9* device)
 
 	if (menu::get().opened)
 	{
-		if (mouse_enabled)
-		{
-			interfaces::get().engine->execute_cmd("cl_mouseenable 0");
-			mouse_enabled = false;
-		}
-
+		interfaces::get().input_system->enable_input(false);
 		menu::get().render();
 	}
-	else if (!mouse_enabled)
+	else
 	{
-		interfaces::get().engine->execute_cmd("cl_mouseenable 1");
-		mouse_enabled = true;
+		interfaces::get().input_system->enable_input(true);
 	}
 
 	ImGui::Render();

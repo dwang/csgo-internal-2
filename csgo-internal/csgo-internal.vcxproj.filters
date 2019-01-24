@@ -164,5 +164,14 @@
     <ClInclude Include="dependencies\utilities\hotkeys.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="core\menu\settings.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\interfaces\iinput.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dependencies\interfaces\iinputsystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

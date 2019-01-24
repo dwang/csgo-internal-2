@@ -98,7 +98,9 @@
     <ClInclude Include="core\features\features.hpp" />
     <ClInclude Include="core\hooks\hooks.hpp" />
     <ClInclude Include="core\menu\menu.hpp" />
+    <ClInclude Include="core\menu\settings.hpp" />
     <ClInclude Include="dependencies\common_includes.hpp" />
+    <ClInclude Include="dependencies\interfaces\iinputsystem.hpp" />
     <ClInclude Include="dependencies\imgui\examples\imgui_impl_dx9.h" />
     <ClInclude Include="dependencies\imgui\examples\imgui_impl_win32.h" />
     <ClInclude Include="dependencies\imgui\imconfig.h" />
@@ -110,6 +112,7 @@
     <ClInclude Include="dependencies\interfaces\ibaseclientdll.hpp" />
     <ClInclude Include="dependencies\interfaces\icliententitylist.hpp" />
     <ClInclude Include="dependencies\interfaces\iclientmode.hpp" />
+    <ClInclude Include="dependencies\interfaces\iinput.hpp" />
     <ClInclude Include="dependencies\interfaces\interfaces.hpp" />
     <ClInclude Include="dependencies\interfaces\ipanel.hpp" />
     <ClInclude Include="dependencies\interfaces\isurface.hpp" />

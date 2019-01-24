@@ -19,6 +19,8 @@ void interfaces::initialize()
 	engine = reinterpret_cast<iv_engine_client*>(capture_interface("engine.dll", "VEngineClient014"));
 	surface = reinterpret_cast<i_surface*>(capture_interface("vguimatsurface.dll", "VGUI_Surface031"));
 	panel = reinterpret_cast<i_panel*>(capture_interface("vgui2.dll", "VGUI_Panel009"));
-
+	input_system = reinterpret_cast<i_input_system*>(capture_interface("inputsystem.dll", "InputSystemVersion001"));
+	
 	direct3d = **(IDirect3DDevice9***)(utilities::get().pattern_scan(GetModuleHandleA("shaderapidx9.dll"), "A1 ? ? ? ? 50 8B 08 FF 51 0C") + 1);
+	input = *(i_input**)(utilities::get().pattern_scan(GetModuleHandleA("client_panorama.dll"), "B9 ? ? ? ? F3 0F 11 04 24 FF 50 10") + 1);
 }

@@ -3,6 +3,8 @@
 #include "ibaseclientdll.hpp"
 #include "icliententitylist.hpp"
 #include "iclientmode.hpp"
+#include "iinput.hpp"
+#include "iinputsystem.hpp"
 #include "ivengineclient.hpp"
 #include "isurface.hpp"
 #include "ipanel.hpp"
@@ -16,6 +18,8 @@ public:
 	iv_engine_client* engine;
 	i_surface* surface;
 	i_panel* panel;
+	i_input* input;
+	i_input_system* input_system;
 	IDirect3DDevice9* direct3d;
 
 	void initialize();

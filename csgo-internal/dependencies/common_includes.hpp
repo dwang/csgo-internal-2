@@ -32,5 +32,6 @@
 
 #include "../core/features/features.hpp"
 #include "../core/menu/menu.hpp"
+#include "../core/menu/settings.hpp"
 #include "../sdk/sdk.hpp"
 #include "../core/hooks/hooks.hpp"

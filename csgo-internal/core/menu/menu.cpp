@@ -71,22 +71,22 @@ void menu::initialize(IDirect3DDevice9* device)
 	style.Colors[ImGuiCol_PlotHistogramHovered] = ImVec4(1.00f, 0.60f, 0.00f, 1.00f);
 	style.Colors[ImGuiCol_ModalWindowDarkening] = ImVec4(0.20f, 0.20f, 0.20f, 0.35f);
 
-	render_tab["Aimbot"] = []()
+	render_tab["aimbot"] = []()
 	{
 		ImGui::Text("Aimbot");
 	};
 
-	render_tab["Visuals"] = []()
+	render_tab["visuals"] = []()
 	{
-		ImGui::Text("Visuals");
+		ImGui::Checkbox("watermark", &settings::get().visuals.watermark);
 	};
 
-	render_tab["Misc"] = []()
+	render_tab["misc"] = []()
 	{
-		ImGui::Text("Misc");
+		ImGui::Checkbox("bunnyhop", &settings::get().misc.bunnyhop);
 	};
 
-	render_tab["Skins"] = []()
+	render_tab["skins"] = []()
 	{
 		ImGui::Text("Skins");
 	};
@@ -94,7 +94,7 @@ void menu::initialize(IDirect3DDevice9* device)
 
 void menu::render()
 {
-	const std::vector<std::string> tabs = { "Aimbot", "Visuals", "Misc", "Skins" };
+	const std::vector<std::string> tabs = { "aimbot", "visuals", "misc", "skins" };
 	constexpr int width = 800;
 	ImGui::GetStyle() = style;
 
