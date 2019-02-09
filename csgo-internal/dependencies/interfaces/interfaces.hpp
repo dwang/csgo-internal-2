@@ -1,5 +1,9 @@
 #pragma once
 
+#include <d3d9.h>
+
+#include "../utilities/singleton.hpp"
+
 #include "ibaseclientdll.hpp"
 #include "icliententitylist.hpp"
 #include "iclientmode.hpp"
@@ -7,7 +11,9 @@
 #include "iinputsystem.hpp"
 #include "ivengineclient.hpp"
 #include "isurface.hpp"
+#include "ivdebugoverlay.hpp"
 #include "ipanel.hpp"
+#include "cglobalvarsbase.hpp"
 
 class interfaces : public singleton<interfaces>
 {
@@ -18,8 +24,10 @@ public:
 	iv_engine_client* engine;
 	i_surface* surface;
 	i_panel* panel;
+	iv_debug_overlay* debug_overlay;
 	i_input* input;
 	i_input_system* input_system;
+	c_global_vars_base* globals;
 	IDirect3DDevice9* direct3d;
 
 	void initialize();

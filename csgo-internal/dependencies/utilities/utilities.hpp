@@ -1,5 +1,9 @@
 #pragma once
 
+#include <Windows.h>
+#include <cstdint>
+#include <string>
+
 #include "../utilities/singleton.hpp"
 
 #define M_PI 3.14159265358979323846

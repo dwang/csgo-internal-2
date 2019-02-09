@@ -1,4 +1,7 @@
-#include "../common_includes.hpp"
+#include "utilities.hpp"
+
+#include <string>
+#include <vector>
 
 HMODULE utilities::get_handle_safe(std::string handle)
 {

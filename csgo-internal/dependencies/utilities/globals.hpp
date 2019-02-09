@@ -1,10 +1,14 @@
 #pragma once
 
-#include "../common_includes.hpp"
+#include <array>
+
+#include "singleton.hpp"
+#include "../../sdk/sdk.hpp"
 
 class globals : public singleton<globals>
 {
 public:
+	player_t* local_player;
 	HWND window;
 	std::array<bool, 256> pressed;
 	bool d3d_init;

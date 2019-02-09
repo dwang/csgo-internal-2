@@ -1,6 +1,7 @@
 #pragma once
 
 #include <winerror.h>
+#include <memory>
 
 class vmt_hook
 {

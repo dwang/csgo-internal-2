@@ -1,6 +1,10 @@
 #pragma once
 
-#include "../../dependencies/common_includes.hpp"
+#include "../../dependencies/utilities/singleton.hpp"
+#include "../../dependencies/utilities/vmt.hpp"
+#include "../../dependencies/interfaces/interfaces.hpp"
+#include "../../sdk/sdk.hpp"
+#include "../menu/menu.hpp"
 
 namespace indexes
 {

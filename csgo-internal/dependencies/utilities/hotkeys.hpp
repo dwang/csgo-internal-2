@@ -1,6 +1,8 @@
 #pragma once
 
-#include "../common_includes.hpp"
+#include <map>
+
+#include "singleton.hpp"
 
 class hotkeys : public singleton<hotkeys>
 {

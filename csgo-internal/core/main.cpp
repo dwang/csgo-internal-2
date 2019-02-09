@@ -1,4 +1,14 @@
-#include "../dependencies/common_includes.hpp"
+#define VC_EXTRALEAN
+#include <Windows.h>
+#include <fstream>
+#include <thread>
+
+#include "../dependencies/utilities/utilities.hpp"
+#include "../dependencies/interfaces/interfaces.hpp"
+#include "../dependencies/utilities/netvars.hpp"
+#include "../dependencies/utilities/globals.hpp"
+#include "../dependencies/utilities/hotkeys.hpp"
+#include "../core/hooks/hooks.hpp"
 
 unsigned long __stdcall on_dll_attach(void* reserved)
 {

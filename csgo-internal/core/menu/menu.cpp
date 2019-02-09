@@ -1,5 +1,9 @@
 #include "menu.hpp"
 
+#include <vector>
+#include "settings.hpp"
+#include "../../dependencies/utilities/globals.hpp"
+
 void menu::initialize(IDirect3DDevice9* device)
 {
 	ImGui::CreateContext();

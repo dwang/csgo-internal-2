@@ -1,5 +1,10 @@
 #pragma once
 
+#include "../../dependencies/utilities/netvars.hpp"
+#include "../math/vector.hpp"
+
+#include "collideable.hpp"
+
 enum entity_flags
 {
 	fl_onground = (1 << 0),
@@ -118,13 +123,19 @@ public:
 	bool is_player()
 	{
 		using original_fn = bool(__thiscall*)(entity_t*);
-		return (*(original_fn**)this)[152](this);
+		return (*(original_fn**)this)[153](this);
 	}
 
 	bool is_weapon()
 	{
 		using original_fn = bool(__thiscall*)(entity_t*);
 		return (*(original_fn**)this)[160](this);
+	}
+
+	collideable_t* collideable()
+	{
+		using original_fn = collideable_t*(__thiscall*)(void*);
+		return (*(original_fn**)this)[3](this);
 	}
 
 	void update()
@@ -137,8 +148,8 @@ public:
 	netvar_fn(unsigned long, owner_handle, "DT_BaseEntity->m_hOwnerEntity");
 	offset_fn(bool, dormant, 0xED);
 	netvar_fn(float, simulation_time, "DT_BaseEntity->m_flSimulationTime");
-	offset_fn(vec3_t, origin, 0x134);
-	offset_fn(vec3_t, view_offset, 0x104);
+	netvar_fn(vec3_t, origin, "DT_BaseEntity->m_vecOrigin");
+	netvar_fn(vec3_t, view_offset, "DT_BaseEntity->m_vecViewOffset");
 	netvar_fn(int, team, "DT_BaseEntity->m_iTeamNum");
 	netvar_fn(bool, spotted, "DT_BaseEntity->m_bSpotted");
 };
@@ -167,8 +178,8 @@ public:
 	netvar_fn(unsigned long, observer_target, "DT_BasePlayer->m_hObserverTarget");
 	netvar_fn(unsigned long, active_weapon_handle, "DT_BaseCombatCharacter->m_hActiveWeapon");
 
-	int* weapons()
+	bool is_valid()
 	{
-		return (int*)(uintptr_t(this) + 0x2DE8);
+		return (this && !this->dormant() && this->is_player() && this->health() > 0);
 	}
 };

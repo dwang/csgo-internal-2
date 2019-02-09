@@ -1,4 +1,13 @@
-#include "../../dependencies/common_includes.hpp"
+#include "hooks.hpp"
+
+#include <memory>
+
+#include "../../dependencies/interfaces/interfaces.hpp"
+#include "../../dependencies/utilities/globals.hpp"
+#include "../../dependencies/utilities/render.hpp"
+#include "../../dependencies/utilities/hotkeys.hpp"
+#include "../features/features.hpp"
+#include "../menu/settings.hpp"
 
 void hooks::initialize()
 {
@@ -42,7 +51,9 @@ bool __stdcall hooks::create_move(float frame_time, c_usercmd* user_cmd)
 	if (!user_cmd || !user_cmd->command_number)
 		return o_create_move;
 
-	if (!interfaces::get().entity_list->get_client_entity(interfaces::get().engine->get_local_player()))
+	globals::get().local_player = reinterpret_cast<player_t*>(interfaces::get().entity_list->get_client_entity(interfaces::get().engine->get_local_player()));
+
+	if (!globals::get().local_player)
 		return o_create_move;
 
 	if (settings::get().misc.bunnyhop)
@@ -75,6 +86,8 @@ void __stdcall hooks::paint_traverse(unsigned int panel, bool force_repaint, boo
 	{
 		if (settings::get().visuals.watermark)
 			render::get().draw_text(1, 1, render::get().watermark_font, "csgo-internal - " __DATE__, false, color(255, 255, 255));
+
+		visuals::get().render();
 	}
 }
 
@@ -88,11 +101,6 @@ long __stdcall hooks::end_scene(IDirect3DDevice9* device)
 		globals::get().d3d_init = true;
 	}
 
-	ImGui::GetIO().MouseDrawCursor = menu::get().opened;
-	ImGui_ImplDX9_NewFrame();
-	ImGui_ImplWin32_NewFrame();
-	ImGui::NewFrame();
-
 	interfaces::get().input->m_mouse_initiated = !menu::get().opened;
 
 	if (!interfaces::get().input->m_mouse_initiated)
@@ -103,6 +111,11 @@ long __stdcall hooks::end_scene(IDirect3DDevice9* device)
 	}
 	else
 		interfaces::get().input_system->enable_input(true);
+
+	ImGui::GetIO().MouseDrawCursor = menu::get().opened;
+	ImGui_ImplDX9_NewFrame();
+	ImGui_ImplWin32_NewFrame();
+	ImGui::NewFrame();
 
 	if (menu::get().opened)
 		menu::get().render();

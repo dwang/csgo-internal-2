@@ -80,11 +80,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="core\features\bunnyhop.cpp" />
+    <ClCompile Include="core\features\visuals.cpp" />
     <ClCompile Include="core\hooks\hooks.cpp" />
     <ClCompile Include="core\main.cpp" />
     <ClCompile Include="core\menu\menu.cpp" />
-    <ClCompile Include="dependencies\imgui\examples\imgui_impl_dx9.cpp" />
-    <ClCompile Include="dependencies\imgui\examples\imgui_impl_win32.cpp" />
+    <ClCompile Include="dependencies\imgui\imgui_impl_dx9.cpp" />
+    <ClCompile Include="dependencies\imgui\imgui_impl_win32.cpp" />
     <ClCompile Include="dependencies\imgui\imgui.cpp" />
     <ClCompile Include="dependencies\imgui\imgui_draw.cpp" />
     <ClCompile Include="dependencies\imgui\imgui_widgets.cpp" />
@@ -96,13 +97,15 @@
   <ItemGroup>
     <ClInclude Include="core\features\bunnyhop.hpp" />
     <ClInclude Include="core\features\features.hpp" />
+    <ClInclude Include="core\features\visuals.hpp" />
     <ClInclude Include="core\hooks\hooks.hpp" />
     <ClInclude Include="core\menu\menu.hpp" />
     <ClInclude Include="core\menu\settings.hpp" />
-    <ClInclude Include="dependencies\common_includes.hpp" />
+    <ClInclude Include="dependencies\interfaces\cglobalvarsbase.hpp" />
+    <ClInclude Include="dependencies\interfaces\ivdebugoverlay.hpp" />
     <ClInclude Include="dependencies\interfaces\iinputsystem.hpp" />
-    <ClInclude Include="dependencies\imgui\examples\imgui_impl_dx9.h" />
-    <ClInclude Include="dependencies\imgui\examples\imgui_impl_win32.h" />
+    <ClInclude Include="dependencies\imgui\imgui_impl_dx9.h" />
+    <ClInclude Include="dependencies\imgui\imgui_impl_win32.h" />
     <ClInclude Include="dependencies\imgui\imconfig.h" />
     <ClInclude Include="dependencies\imgui\imgui.h" />
     <ClInclude Include="dependencies\imgui\imgui_internal.h" />
@@ -126,6 +129,7 @@
     <ClInclude Include="dependencies\utilities\utilities.hpp" />
     <ClInclude Include="dependencies\utilities\vmt.hpp" />
     <ClInclude Include="sdk\classes\client_class.hpp" />
+    <ClInclude Include="sdk\classes\collideable.hpp" />
     <ClInclude Include="sdk\classes\c_usercmd.hpp" />
     <ClInclude Include="sdk\classes\entity.hpp" />
     <ClInclude Include="sdk\classes\recv_props.hpp" />
