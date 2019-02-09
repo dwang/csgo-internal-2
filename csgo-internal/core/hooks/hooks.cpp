@@ -32,6 +32,10 @@ void hooks::initialize()
 
 void hooks::restore()
 {
+	ImGui_ImplDX9_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
+
 	interfaces::get().input->m_mouse_initiated = true;
 	interfaces::get().input->m_mouse_active = true;
 	interfaces::get().input_system->enable_input(true);
