@@ -23,6 +23,8 @@ void hooks::initialize()
 
 void hooks::restore()
 {
+	interfaces::get().input->m_mouse_initiated = true;
+	interfaces::get().input->m_mouse_active = true;
 	interfaces::get().input_system->enable_input(true);
 
 	clientmode_hook->release();
@@ -91,15 +93,19 @@ long __stdcall hooks::end_scene(IDirect3DDevice9* device)
 	ImGui_ImplWin32_NewFrame();
 	ImGui::NewFrame();
 
-	if (menu::get().opened)
+	interfaces::get().input->m_mouse_initiated = !menu::get().opened;
+
+	if (!interfaces::get().input->m_mouse_initiated)
 	{
+		interfaces::get().input->m_mouse_active = false;
 		interfaces::get().input_system->enable_input(false);
-		menu::get().render();
+		interfaces::get().input_system->reset_input_state();
 	}
 	else
-	{
 		interfaces::get().input_system->enable_input(true);
-	}
+
+	if (menu::get().opened)
+		menu::get().render();
 
 	ImGui::Render();
 	ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
