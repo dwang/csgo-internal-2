@@ -1,5 +1,6 @@
 #include "visuals.hpp"
 
+#include "../menu/settings.hpp"
 #include "../../dependencies/interfaces/interfaces.hpp"
 #include "../../dependencies/utilities/globals.hpp"
 
@@ -73,7 +74,8 @@ void visuals::render()
 		if (!get_bounding_box(player, bounding_box))
 			continue;
 
-		draw_player_box(player, bounding_box);
+		if (settings::get().visuals.box_esp)
+			draw_player_box(player, bounding_box);
 	}
 }
 

@@ -82,6 +82,7 @@ void menu::initialize(IDirect3DDevice9* device)
 
 	render_tab["visuals"] = []()
 	{
+		ImGui::Checkbox("box esp", &settings::get().visuals.box_esp);
 		ImGui::Checkbox("watermark", &settings::get().visuals.watermark);
 	};
 

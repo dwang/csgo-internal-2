@@ -12,6 +12,7 @@ public:
 
 	struct visuals
 	{
+		bool box_esp;
 		bool watermark;
 	} visuals;
 
