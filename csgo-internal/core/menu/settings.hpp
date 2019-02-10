@@ -7,7 +7,8 @@ class settings : public singleton<settings>
 public:
 	struct aimbot
 	{
-		bool enabled;
+		bool backtrack = true;
+		int backtrack_ticks = 12;
 	} aimbot;
 
 	struct visuals

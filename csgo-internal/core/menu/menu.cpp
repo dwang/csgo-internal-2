@@ -77,7 +77,9 @@ void menu::initialize(IDirect3DDevice9* device)
 
 	render_tab["aimbot"] = []()
 	{
-		ImGui::Text("Aimbot");
+		ImGui::Checkbox("backtrack", &settings::get().aimbot.backtrack);
+		if (settings::get().aimbot.backtrack)
+			ImGui::SliderInt("backtrack ticks", &settings::get().aimbot.backtrack_ticks, 1, 12);
 	};
 
 	render_tab["visuals"] = []()

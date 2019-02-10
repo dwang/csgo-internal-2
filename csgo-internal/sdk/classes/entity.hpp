@@ -2,8 +2,8 @@
 
 #include "../../dependencies/utilities/netvars.hpp"
 #include "../math/vector.hpp"
-
 #include "collideable.hpp"
+#include "studio.hpp"
 
 enum entity_flags
 {
@@ -143,6 +143,15 @@ public:
 		return reinterpret_cast<void*>(uintptr_t(this) + 0x4);
 	}
 
+	bool setup_bones(matrix_t* out, int max_bones, int mask, float time)
+	{
+		if (!this)
+			return false;
+
+		using original_fn = bool(__thiscall*)(void*, matrix_t*, int, int, float);
+		return (*(original_fn**)animating())[13](animating(), out, max_bones, mask, time);
+	}
+
 	int draw_model(int flags, uint8_t alpha)
 	{
 		using original_fn = int(__thiscall*)(void*, int, uint8_t);
@@ -192,5 +201,15 @@ public:
 	bool is_valid()
 	{
 		return (this && !this->dormant() && this->is_player() && this->health() > 0);
+	}
+
+	vec3_t get_bone_position(int bone)
+	{
+		matrix_t bone_matrix[128];
+
+		if (setup_bones(bone_matrix, 128, bone_flags::bone_used_by_anything, 0.0f))
+			return vec3_t(bone_matrix[bone][0][3], bone_matrix[bone][1][3], bone_matrix[bone][2][3]);
+
+		return vec3_t{};
 	}
 };

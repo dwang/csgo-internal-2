@@ -79,6 +79,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="core\features\backtrack.cpp" />
     <ClCompile Include="core\features\bunnyhop.cpp" />
     <ClCompile Include="core\features\chams.cpp" />
     <ClCompile Include="core\features\visuals.cpp" />
@@ -97,6 +98,7 @@
     <ClCompile Include="sdk\math\vector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\features\backtrack.hpp" />
     <ClInclude Include="core\features\bunnyhop.hpp" />
     <ClInclude Include="core\features\chams.hpp" />
     <ClInclude Include="core\features\features.hpp" />

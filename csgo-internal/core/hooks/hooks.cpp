@@ -60,6 +60,9 @@ bool __stdcall hooks::create_move(float frame_time, c_usercmd* user_cmd)
 	if (!globals::get().local_player)
 		return o_create_move;
 
+	if (settings::get().aimbot.backtrack)
+		backtrack::get().create_move(user_cmd);
+
 	if (settings::get().misc.bunnyhop)
 		bunnyhop::get().create_move(user_cmd);
 

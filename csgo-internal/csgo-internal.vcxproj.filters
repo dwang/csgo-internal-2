@@ -63,6 +63,9 @@
     <ClCompile Include="dependencies\utilities\vmt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\features\backtrack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\hooks\hooks.hpp">
@@ -213,6 +216,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dependencies\interfaces\irenderview.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\features\backtrack.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
