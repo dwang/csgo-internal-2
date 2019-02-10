@@ -67,8 +67,12 @@ void ImGui_ImplDX9_RenderDrawData(ImDrawData* draw_data)
 
     // Backup the DX9 state
     IDirect3DStateBlock9* d3d9_state_block = NULL;
-    if (g_pd3dDevice->CreateStateBlock(D3DSBT_ALL, &d3d9_state_block) < 0)
+	IDirect3DVertexDeclaration9* vertDec;
+	IDirect3DVertexShader9* vertShader;
+    if (g_pd3dDevice->CreateStateBlock(D3DSBT_PIXELSTATE, &d3d9_state_block) < 0)
         return;
+	g_pd3dDevice->GetVertexDeclaration(&vertDec);
+	g_pd3dDevice->GetVertexShader(&vertShader);
 
     // Backup the DX9 transform (DX9 documentation suggests that it is included in the StateBlock but it doesn't appear to)
     D3DMATRIX last_world, last_view, last_projection;
@@ -198,6 +202,8 @@ void ImGui_ImplDX9_RenderDrawData(ImDrawData* draw_data)
     // Restore the DX9 state
     d3d9_state_block->Apply();
     d3d9_state_block->Release();
+	g_pd3dDevice->SetVertexDeclaration(vertDec);
+	g_pd3dDevice->SetVertexShader(vertShader);
 }
 
 bool ImGui_ImplDX9_Init(IDirect3DDevice9* device)
