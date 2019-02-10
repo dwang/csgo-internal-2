@@ -10,3 +10,4 @@
 #include "misc/color.hpp"
 
 #include "structs/vertex_t.hpp"
+#include "structs/materials.hpp"

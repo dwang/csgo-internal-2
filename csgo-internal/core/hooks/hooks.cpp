@@ -14,15 +14,18 @@ void hooks::initialize()
 	clientmode_hook = std::make_unique<vmt_hook>();
 	panel_hook = std::make_unique<vmt_hook>();
 	direct3d_hook = std::make_unique<vmt_hook>();
+	renderview_hook = std::make_unique<vmt_hook>();
 
 	clientmode_hook->setup(interfaces::get().clientmode);
 	panel_hook->setup(interfaces::get().panel);
 	direct3d_hook->setup(interfaces::get().direct3d);
+	renderview_hook->setup(interfaces::get().render_view);
 
 	clientmode_hook->hook(indexes::create_move, create_move);
 	panel_hook->hook(indexes::paint_traverse, paint_traverse);
 	direct3d_hook->hook(indexes::end_scene, end_scene);
 	direct3d_hook->hook(indexes::reset, reset);
+	renderview_hook->hook(indexes::scene_end, scene_end);
 
 	globals::get().window = FindWindowA("Valve001", nullptr);
 	original_wndproc = (WNDPROC)SetWindowLongPtrA(globals::get().window, GWL_WNDPROC, (LONG)wndproc);
@@ -39,6 +42,7 @@ void hooks::restore()
 	clientmode_hook->release();
 	panel_hook->release();
 	direct3d_hook->release();
+	renderview_hook->release();
 
 	SetWindowLongPtrA(globals::get().window, GWL_WNDPROC, (LONG)hooks::get().original_wndproc);
 }
@@ -60,6 +64,16 @@ bool __stdcall hooks::create_move(float frame_time, c_usercmd* user_cmd)
 		bunnyhop::get().create_move(user_cmd);
 
 	return false;
+}
+
+void __stdcall hooks::scene_end()
+{
+	static auto o_scene_end = hooks::get().renderview_hook->original<scene_end_fn>(indexes::scene_end);
+
+	o_scene_end(interfaces::get().render_view);
+
+	if (settings::get().visuals.chams)
+		chams::get().scene_end();
 }
 
 void __stdcall hooks::paint_traverse(unsigned int panel, bool force_repaint, bool allow_force)

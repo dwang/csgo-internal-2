@@ -84,6 +84,9 @@ void menu::initialize(IDirect3DDevice9* device)
 	{
 		ImGui::Checkbox("box esp", &settings::get().visuals.box_esp);
 		ImGui::Checkbox("name esp", &settings::get().visuals.name_esp);
+		ImGui::Checkbox("chams", &settings::get().visuals.chams);
+		if (settings::get().visuals.chams)
+			ImGui::Checkbox("chams ignore z", &settings::get().visuals.chams_ignore_z);
 		ImGui::Checkbox("watermark", &settings::get().visuals.watermark);
 	};
 

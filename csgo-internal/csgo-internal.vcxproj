@@ -80,6 +80,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="core\features\bunnyhop.cpp" />
+    <ClCompile Include="core\features\chams.cpp" />
     <ClCompile Include="core\features\visuals.cpp" />
     <ClCompile Include="core\hooks\hooks.cpp" />
     <ClCompile Include="core\main.cpp" />
@@ -96,12 +97,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\features\bunnyhop.hpp" />
+    <ClInclude Include="core\features\chams.hpp" />
     <ClInclude Include="core\features\features.hpp" />
     <ClInclude Include="core\features\visuals.hpp" />
     <ClInclude Include="core\hooks\hooks.hpp" />
     <ClInclude Include="core\menu\menu.hpp" />
     <ClInclude Include="core\menu\settings.hpp" />
     <ClInclude Include="dependencies\interfaces\cglobalvarsbase.hpp" />
+    <ClInclude Include="dependencies\interfaces\imaterialsystem.hpp" />
+    <ClInclude Include="dependencies\interfaces\irenderview.hpp" />
     <ClInclude Include="dependencies\interfaces\ivdebugoverlay.hpp" />
     <ClInclude Include="dependencies\interfaces\iinputsystem.hpp" />
     <ClInclude Include="dependencies\imgui\imgui_impl_dx9.h" />
@@ -120,9 +124,11 @@
     <ClInclude Include="dependencies\interfaces\ipanel.hpp" />
     <ClInclude Include="dependencies\interfaces\isurface.hpp" />
     <ClInclude Include="dependencies\interfaces\ivengineclient.hpp" />
+    <ClInclude Include="dependencies\interfaces\ivmodelinfo.hpp" />
     <ClInclude Include="dependencies\utilities\fnv.hpp" />
     <ClInclude Include="dependencies\utilities\globals.hpp" />
     <ClInclude Include="dependencies\utilities\hotkeys.hpp" />
+    <ClInclude Include="dependencies\interfaces\ivmodelrender.hpp" />
     <ClInclude Include="dependencies\utilities\netvars.hpp" />
     <ClInclude Include="dependencies\utilities\render.hpp" />
     <ClInclude Include="dependencies\utilities\singleton.hpp" />
@@ -133,9 +139,12 @@
     <ClInclude Include="sdk\classes\c_usercmd.hpp" />
     <ClInclude Include="sdk\classes\entity.hpp" />
     <ClInclude Include="sdk\classes\recv_props.hpp" />
+    <ClInclude Include="sdk\classes\studio.hpp" />
     <ClInclude Include="sdk\math\vector.hpp" />
     <ClInclude Include="sdk\misc\color.hpp" />
     <ClInclude Include="sdk\sdk.hpp" />
+    <ClInclude Include="sdk\structs\materials.hpp" />
+    <ClInclude Include="sdk\structs\models.hpp" />
     <ClInclude Include="sdk\structs\vertex_t.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

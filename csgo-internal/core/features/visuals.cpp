@@ -65,7 +65,7 @@ void visuals::render()
 	{
 		auto player = reinterpret_cast<player_t*>(interfaces::get().entity_list->get_client_entity(i));
 
-		if (!player || !player->is_valid())
+		if (!player || !globals::get().local_player || !player->is_valid())
 			continue;
 
 		if (player == globals::get().local_player)
