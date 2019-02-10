@@ -25,6 +25,7 @@ class render : public singleton<render>
 {
 public:
 	DWORD watermark_font;
+	DWORD esp_font;
 
 public:
 	void setup_fonts()
@@ -33,8 +34,10 @@ public:
 		if (!once)
 		{
 			watermark_font = interfaces::get().surface->font_create();
+			esp_font = interfaces::get().surface->font_create();
 
-			interfaces::get().surface->set_font_glyph(watermark_font, "Tahoma", 12, 500, 0, 0, font_flags::fontflag_outline);
+			interfaces::get().surface->set_font_glyph(watermark_font, "Tahoma", 20, FW_MEDIUM, 0, 0, font_flags::fontflag_outline);
+			interfaces::get().surface->set_font_glyph(esp_font, "Verdana", 20, FW_BOLD, 0, 0, font_flags::fontflag_dropshadow);
 
 			once = true;
 		}
@@ -96,8 +99,7 @@ public:
 	void draw_outline(int x, int y, int w, int h, color draw_color)
 	{
 		interfaces::get().surface->set_drawing_color(draw_color.r, draw_color.g, draw_color.b, draw_color.a = 255);
-		interfaces::get().surface->draw_outlined_rect(x + 1, y + 1, w - 2, h - 2);
-		interfaces::get().surface->draw_outlined_rect(x - 1, y - 1, w + 2, h + 2);
+		interfaces::get().surface->draw_outlined_rect(x, y, w, h);
 	}
 
 	void get_text_size(unsigned long font, const char *string, int w, int h)
@@ -119,6 +121,21 @@ public:
 		const wchar_t* out = text.c_str();
 
 		interfaces::get().surface->get_text_size(font, out, w, h);
+	}
+
+	RECT get_text_size(DWORD font, const char* text, ...)
+	{
+		size_t original_size = strlen(text) + 1;
+		const size_t new_size = 100;
+		size_t converted_characters = 0;
+		wchar_t wcstring[new_size];
+		mbstowcs_s(&converted_characters, wcstring, original_size, text, _TRUNCATE);
+
+		RECT rect; int x, y;
+		interfaces::get().surface->get_text_size(font, wcstring, x, y);
+		rect.left = x; rect.bottom = y;
+		rect.right = x;
+		return rect;
 	}
 
 	vec2_t get_screen_size(vec2_t area)

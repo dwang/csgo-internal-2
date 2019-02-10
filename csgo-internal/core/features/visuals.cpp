@@ -3,6 +3,7 @@
 #include "../menu/settings.hpp"
 #include "../../dependencies/interfaces/interfaces.hpp"
 #include "../../dependencies/utilities/globals.hpp"
+#include "../../dependencies/utilities/render.hpp"
 
 bool visuals::get_bounding_box(entity_t* entity, box& in)
 {
@@ -64,23 +65,37 @@ void visuals::render()
 	{
 		auto player = reinterpret_cast<player_t*>(interfaces::get().entity_list->get_client_entity(i));
 
+		if (!player || !player->is_valid())
+			continue;
+
 		if (player == globals::get().local_player)
 			continue;
 
-		if (!player || !player->is_valid())
+		if (player->team() == globals::get().local_player->team())
 			continue;
 
 		box bounding_box;
 		if (!get_bounding_box(player, bounding_box))
 			continue;
 
+		player_info_t player_info;
+		interfaces::get().engine->get_player_info(i, &player_info);
+
 		if (settings::get().visuals.box_esp)
 			draw_player_box(player, bounding_box);
+
+		if (settings::get().visuals.name_esp)
+			draw_player_name(player, player_info, bounding_box);
 	}
 }
 
 void visuals::draw_player_box(entity_t* player, box bounding_box)
 {
-	interfaces::get().surface->set_drawing_color(255, 255, 255);
-	interfaces::get().surface->draw_outlined_rect(bounding_box.x, bounding_box.y, bounding_box.w, bounding_box.h);
+	render::get().draw_outline(bounding_box.x, bounding_box.y, bounding_box.w, bounding_box.h, color(255, 255, 255, 255));
+}
+
+void visuals::draw_player_name(entity_t* player, player_info_t player_info, box bounding_box)
+{
+	RECT text_size = render::get().get_text_size(render::get().esp_font, player_info.name);
+	render::get().draw_text(bounding_box.x + (bounding_box.w / 2) - (text_size.right / 2), bounding_box.y - 20, render::get().esp_font, player_info.name, false, color(255, 255, 255, 255));
 }

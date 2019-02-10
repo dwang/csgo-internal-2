@@ -83,6 +83,7 @@ void menu::initialize(IDirect3DDevice9* device)
 	render_tab["visuals"] = []()
 	{
 		ImGui::Checkbox("box esp", &settings::get().visuals.box_esp);
+		ImGui::Checkbox("name esp", &settings::get().visuals.name_esp);
 		ImGui::Checkbox("watermark", &settings::get().visuals.watermark);
 	};
 
@@ -90,9 +91,7 @@ void menu::initialize(IDirect3DDevice9* device)
 	{
 		ImGui::Checkbox("bunnyhop", &settings::get().misc.bunnyhop);
 		if (ImGui::Button("unload", ImVec2(100, 30)))
-		{
 			globals::get().unload = true;
-		}
 	};
 
 	render_tab["skins"] = []()
@@ -117,18 +116,12 @@ void menu::render()
 		for (unsigned i = 0; i < tabs.size(); i++)
 		{
 			if (i == active_tab)
-			{
 				ImGui::GetStyle().Colors[ImGuiCol_Button] = ImVec4(0.20f, 0.70f, 0.95f, 1.00f);
-			}
 			else
-			{
 				ImGui::GetStyle().Colors[ImGuiCol_Button] = ImVec4(0.25f, 0.25f, 0.25f, 1.00f);
-			}
 
 			if (ImGui::Button(tabs[i].c_str(), ImVec2(150, 50)))
-			{
 				active_tab = i;
-			}
 		}
 
 		ImGui::PopStyleVar();
