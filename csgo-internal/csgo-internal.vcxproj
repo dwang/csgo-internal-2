@@ -93,6 +93,7 @@
     <ClCompile Include="dependencies\interfaces\interfaces.cpp" />
     <ClCompile Include="dependencies\utilities\netvars.cpp" />
     <ClCompile Include="dependencies\utilities\utilities.cpp" />
+    <ClCompile Include="dependencies\utilities\vmt.cpp" />
     <ClCompile Include="sdk\math\vector.cpp" />
   </ItemGroup>
   <ItemGroup>

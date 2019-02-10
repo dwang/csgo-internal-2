@@ -60,6 +60,9 @@
     <ClCompile Include="core\features\chams.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dependencies\utilities\vmt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\hooks\hooks.hpp">

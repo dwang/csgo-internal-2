@@ -11,6 +11,18 @@ HMODULE utilities::get_handle_safe(std::string handle)
 	return GetModuleHandleA(handle.c_str());
 }
 
+std::string utilities::format(const char *fmt, ...)
+{
+	char buf[1024];
+	va_list arguments;
+
+	va_start(arguments, fmt);
+	_vsnprintf_s(buf, sizeof buf, fmt, arguments);
+	va_end(arguments);
+
+	return std::string(buf);
+}
+
 std::uint8_t* utilities::pattern_scan(void* module, const char* signature)
 {
 	static auto pattern_to_byte = [](const char* pattern)

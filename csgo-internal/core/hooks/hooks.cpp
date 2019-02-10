@@ -21,11 +21,11 @@ void hooks::initialize()
 	direct3d_hook->setup(interfaces::get().direct3d);
 	renderview_hook->setup(interfaces::get().render_view);
 
-	clientmode_hook->hook(indexes::create_move, create_move);
-	panel_hook->hook(indexes::paint_traverse, paint_traverse);
-	direct3d_hook->hook(indexes::end_scene, end_scene);
-	direct3d_hook->hook(indexes::reset, reset);
-	renderview_hook->hook(indexes::scene_end, scene_end);
+	clientmode_hook->hook<indexes::create_move>(create_move);
+	panel_hook->hook<indexes::paint_traverse>(paint_traverse);
+	direct3d_hook->hook<indexes::end_scene>(end_scene);
+	direct3d_hook->hook<indexes::reset>(reset);
+	renderview_hook->hook<indexes::scene_end>(scene_end);
 
 	globals::get().window = FindWindowA("Valve001", nullptr);
 	original_wndproc = (WNDPROC)SetWindowLongPtrA(globals::get().window, GWL_WNDPROC, (LONG)wndproc);
@@ -49,7 +49,7 @@ void hooks::restore()
 
 bool __stdcall hooks::create_move(float frame_time, c_usercmd* user_cmd)
 {
-	static auto o_create_move = hooks::get().clientmode_hook->original<create_move_fn>(indexes::create_move);
+	static auto o_create_move = hooks::get().clientmode_hook->get_original<create_move_fn>(indexes::create_move);
 	o_create_move(interfaces::get().clientmode, frame_time, user_cmd);
 
 	if (!user_cmd || !user_cmd->command_number)
@@ -68,7 +68,7 @@ bool __stdcall hooks::create_move(float frame_time, c_usercmd* user_cmd)
 
 void __stdcall hooks::scene_end()
 {
-	static auto o_scene_end = hooks::get().renderview_hook->original<scene_end_fn>(indexes::scene_end);
+	static auto o_scene_end = hooks::get().renderview_hook->get_original<scene_end_fn>(indexes::scene_end);
 
 	o_scene_end(interfaces::get().render_view);
 
@@ -78,7 +78,7 @@ void __stdcall hooks::scene_end()
 
 void __stdcall hooks::paint_traverse(unsigned int panel, bool force_repaint, bool allow_force)
 {
-	static auto o_paint_traverse = hooks::get().panel_hook->original<paint_traverse_fn>(indexes::paint_traverse);
+	static auto o_paint_traverse = hooks::get().panel_hook->get_original<paint_traverse_fn>(indexes::paint_traverse);
 
 	std::string panel_name = interfaces::get().panel->get_panel_name(panel);
 
@@ -107,7 +107,7 @@ void __stdcall hooks::paint_traverse(unsigned int panel, bool force_repaint, boo
 
 long __stdcall hooks::end_scene(IDirect3DDevice9* device)
 {
-	static auto o_end_scene = hooks::get().direct3d_hook->original<end_scene_fn>(indexes::end_scene);
+	static auto o_end_scene = hooks::get().direct3d_hook->get_original<end_scene_fn>(indexes::end_scene);
 
 	if (!globals::get().d3d_init)
 	{
@@ -142,7 +142,7 @@ long __stdcall hooks::end_scene(IDirect3DDevice9* device)
 
 long __stdcall hooks::reset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* presentation_parameters)
 {
-	static auto o_reset = hooks::get().direct3d_hook->original<reset_fn>(indexes::reset);
+	static auto o_reset = hooks::get().direct3d_hook->get_original<reset_fn>(indexes::reset);
 
 	if (globals::get().d3d_init)
 	{
