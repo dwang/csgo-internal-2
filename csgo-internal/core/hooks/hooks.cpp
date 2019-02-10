@@ -144,11 +144,17 @@ long __stdcall hooks::reset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* pre
 {
 	static auto o_reset = hooks::get().direct3d_hook->original<reset_fn>(indexes::reset);
 
-	ImGui_ImplDX9_InvalidateDeviceObjects();
-	auto hr = o_reset(device, presentation_parameters);
-	ImGui_ImplDX9_CreateDeviceObjects();
+	if (globals::get().d3d_init)
+	{
+		printf("resetting draw manager\n");
+		ImGui_ImplDX9_InvalidateDeviceObjects();
+		auto hr = o_reset(device, presentation_parameters);
+		ImGui_ImplDX9_CreateDeviceObjects();
+		printf("draw manager reset succeeded\n");
+		return hr;
+	}
 
-	return hr;
+	return o_reset(device, presentation_parameters);
 }
 
 extern IMGUI_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
