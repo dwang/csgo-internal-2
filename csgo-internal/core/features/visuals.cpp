@@ -63,6 +63,9 @@ void visuals::render()
 {
 	for (int i = 1; i <= interfaces::get().globals->max_clients; i++)
 	{
+		if (settings::get().visuals.esp_mode == 0)
+			continue;
+
 		auto player = reinterpret_cast<player_t*>(interfaces::get().entity_list->get_client_entity(i));
 
 		if (!player || !globals::get().local_player || !player->is_valid())
@@ -74,11 +77,12 @@ void visuals::render()
 		if (player->team() == globals::get().local_player->team())
 			continue;
 
-		box bounding_box;
+		if (settings::get().visuals.esp_mode == 2 && globals::get().local_player->life_state() == 0)
+			continue;
+	
 		if (!get_bounding_box(player, bounding_box))
 			continue;
 
-		player_info_t player_info;
 		interfaces::get().engine->get_player_info(i, &player_info);
 
 		if (settings::get().visuals.box_esp)

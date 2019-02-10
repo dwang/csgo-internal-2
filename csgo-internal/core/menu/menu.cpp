@@ -82,8 +82,27 @@ void menu::initialize(IDirect3DDevice9* device)
 
 	render_tab["visuals"] = []()
 	{
-		ImGui::Checkbox("box esp", &settings::get().visuals.box_esp);
-		ImGui::Checkbox("name esp", &settings::get().visuals.name_esp);
+		const char* items[] = { "off", "on", "dead" };
+
+		if (ImGui::BeginCombo("##esp", items[settings::get().visuals.esp_mode]))
+		{
+			for (int n = 0; n < IM_ARRAYSIZE(items); n++)
+			{
+				bool is_selected = (items[settings::get().visuals.esp_mode] == items[n]);
+				if (ImGui::Selectable(items[n], is_selected))
+					settings::get().visuals.esp_mode = n;
+				if (is_selected)
+					ImGui::SetItemDefaultFocus();
+			}
+			ImGui::EndCombo();
+		}
+
+		if (settings::get().visuals.esp_mode != 0)
+		{
+			ImGui::Checkbox("box esp", &settings::get().visuals.box_esp);
+			ImGui::Checkbox("name esp", &settings::get().visuals.name_esp);
+		}
+
 		ImGui::Checkbox("chams", &settings::get().visuals.chams);
 		if (settings::get().visuals.chams)
 			ImGui::Checkbox("chams ignore z", &settings::get().visuals.chams_ignore_z);

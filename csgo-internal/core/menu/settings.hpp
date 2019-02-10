@@ -12,15 +12,16 @@ public:
 
 	struct visuals
 	{
-		bool box_esp;
-		bool name_esp;
-		bool chams;
-		bool chams_ignore_z;
-		bool watermark;
+		int esp_mode = 2;
+		bool box_esp = true;
+		bool name_esp = true;
+		bool chams = true;
+		bool chams_ignore_z = false;
+		bool watermark = true;
 	} visuals;
 
 	struct misc
 	{
-		bool bunnyhop;
+		bool bunnyhop = true;
 	} misc;
 };

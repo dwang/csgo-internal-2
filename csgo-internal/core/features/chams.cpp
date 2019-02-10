@@ -58,17 +58,22 @@ void chams::scene_end()
 		if (!player || !globals::get().local_player || !player->is_valid())
 			continue;
 
-		if (player->team() == globals::get().local_player->team())
-			continue;
-
 		if (settings::get().visuals.chams_ignore_z)
 		{
-			interfaces::get().render_view->set_color_modulation(1.0, 1.0, 1.0);
+			if (player->team() == globals::get().local_player->team())
+				interfaces::get().render_view->set_color_modulation(1.0f, 1.0f, 1.0f);
+			else
+				interfaces::get().render_view->set_color_modulation(255.0f / 255.0f, 105.0f / 255.0f, 180.0f / 255.0f);
+
 			interfaces::get().model_render->override_material(simple_ignorez);
 			player->draw_model(0x1, 255);
 		}
 
-		interfaces::get().render_view->set_color_modulation(30.0f / 255.0f, 144.0f / 255.0f, 255.0f / 255.0f);
+		if (player->team() == globals::get().local_player->team())
+			interfaces::get().render_view->set_color_modulation(30.0f / 255.0f, 144.0f / 255.0f, 255.0f / 255.0f);
+		else
+			interfaces::get().render_view->set_color_modulation(150.0f / 255.0f, 200.0f / 255.0f, 60.0f / 255.0f);
+
 		interfaces::get().model_render->override_material(simple_regular);
 		player->draw_model(0x1, 255);
 
