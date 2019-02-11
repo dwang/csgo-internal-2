@@ -7,9 +7,6 @@
 
 bool visuals::get_bounding_box(entity_t* entity, box& in)
 {
-	vec3_t origin, min, max, flb, brt, blb, frt, frb, brb, blt, flt;
-	float left, top, right, bottom;
-
 	origin = entity->origin();
 	min = entity->collideable()->mins() + origin;
 	max = entity->collideable()->maxs() + origin;

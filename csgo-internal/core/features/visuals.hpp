@@ -7,18 +7,8 @@
 class visuals : public singleton<visuals>
 {
 private:
-	struct box
-	{
-		int x, y, w, h;
-		box() = default;
-		box(int x, int y, int w, int h)
-		{
-			this->x = x;
-			this->y = y;
-			this->w = w;
-			this->h = h;
-		}
-	};
+	vec3_t origin, min, max, flb, brt, blb, frt, frb, brb, blt, flt;
+	float left, top, right, bottom;
 
 	box bounding_box;
 	player_info_t player_info;
@@ -30,3 +20,4 @@ private:
 public:
 	void render();
 };
+

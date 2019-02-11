@@ -146,7 +146,8 @@
     <ClInclude Include="sdk\math\vector.hpp" />
     <ClInclude Include="sdk\misc\color.hpp" />
     <ClInclude Include="sdk\sdk.hpp" />
-    <ClInclude Include="sdk\structs\materials.hpp" />
+    <ClInclude Include="sdk\structs\box.hpp" />
+    <ClInclude Include="sdk\classes\materials.hpp" />
     <ClInclude Include="sdk\structs\models.hpp" />
     <ClInclude Include="sdk\structs\vertex_t.hpp" />
   </ItemGroup>

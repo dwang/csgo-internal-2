@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../utilities/utilities.hpp"
-#include "../../sdk/structs/materials.hpp"
+#include "../../sdk/classes/materials.hpp"
 
 class i_material_system
 {

@@ -197,9 +197,6 @@
     <ClInclude Include="core\features\chams.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\structs\materials.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\structs\models.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -219,6 +216,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\features\backtrack.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\structs\box.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\classes\materials.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

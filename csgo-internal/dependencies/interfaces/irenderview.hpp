@@ -16,4 +16,3 @@ public:
 		return utilities::get().call_vfunc<4, const void>(this, blend);
 	}
 };
-
