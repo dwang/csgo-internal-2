@@ -23,6 +23,6 @@ public:
 
 	struct misc
 	{
-		bool bunnyhop = true;
+		bool bunnyhop = false;
 	} misc;
 };
