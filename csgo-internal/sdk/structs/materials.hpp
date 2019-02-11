@@ -1,43 +1,39 @@
 #pragma once
 
+#include "../../dependencies/utilities/utilities.hpp"
+
 using material_handle_t = unsigned short;
 class i_material
 {
 public:
 	const char* get_name()
 	{
-		using original_fn = const char*(__thiscall*)(i_material*);
-		return (*(original_fn**)this)[0](this);
+		return utilities::get().call_vfunc<0, const char*>(this);
 	}
 
 	const char* get_group_name()
 	{
-		using original_fn = const char*(__thiscall*)(i_material*);
-		return (*(original_fn**)this)[1](this);
+		return utilities::get().call_vfunc<1, const char*>(this);
 	}
 
 	void set_alpha(float alpha)
 	{
-		using original_fn = void(__thiscall*)(i_material*, float);
-		return (*(original_fn **)this)[27](this, alpha);
+		return utilities::get().call_vfunc<27, void>(this, alpha);
 	}
 
 	void set_alpha(int alpha)
 	{
-		using original_fn = void(__thiscall*)(i_material*, float);
-		return (*(original_fn**)this)[27](this, static_cast<float>(alpha) / 255.f);
+		return utilities::get().call_vfunc<27, void>(this, static_cast<float>(alpha) / 255.f);
 	}
 
 	void set_color(float r, float g, float b)
 	{
-		using original_fn = void(__thiscall*)(i_material*, float, float, float);
-		return (*(original_fn**)this)[28](this, r, g, b);
+		return utilities::get().call_vfunc<28, void>(this, r, g, b);
 	}
 
 	void set_color(int r, int g, int b)
 	{
-		using original_fn = void(__thiscall*)(i_material*, float, float, float);
-		return (*(original_fn**)this)[28](this, r / 255.f, g / 255.f, b / 255.f);
+		return utilities::get().call_vfunc<28, void>(this, static_cast<float>(r) / 255.f, static_cast<float>(g) / 255.f, static_cast<float>(b) / 255.f);
 	}
 
 	void set_color(int color32)
@@ -51,7 +47,6 @@ public:
 
 	void set_flag(int flag, bool on)
 	{
-		using original_fn = void(__thiscall*)(i_material*, int, bool);
-		return (*(original_fn**)this)[29](this, flag, on);
+		return utilities::get().call_vfunc<29, void>(this, flag, on);
 	}
 };

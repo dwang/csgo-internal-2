@@ -24,17 +24,29 @@ public:
 
 	vec3_t& operator+=(const vec3_t& v)
 	{
-		x += v.x; y += v.y; z += v.z; return *this;
+		x += v.x;
+		y += v.y;
+		z += v.z;
+		
+		return *this;
 	}
 
 	vec3_t& operator-=(const vec3_t& v)
 	{
-		x -= v.x; y -= v.y; z -= v.z; return *this;
+		x -= v.x;
+		y -= v.y;
+		z -= v.z;
+		
+		return *this;
 	}
 
 	vec3_t& operator*=(float v)
 	{
-		x *= v; y *= v; z *= v; return *this;
+		x *= v;
+		y *= v;
+		z *= v;
+		
+		return *this;
 	}
 
 	vec3_t operator+(const vec3_t& v)
@@ -54,12 +66,12 @@ public:
 
 	float& operator[](int i)
 	{
-		return ((float*)this)[i];
+		return reinterpret_cast<float*>(this)[i];
 	}
 
 	float operator[](int i) const
 	{
-		return ((float*)this)[i];
+		return const_cast<float*>(reinterpret_cast<const float*>(this))[i];
 	}
 
 	void clamp();

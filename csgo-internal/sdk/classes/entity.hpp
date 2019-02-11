@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../dependencies/utilities/netvars.hpp"
+#include "../../dependencies/utilities/utilities.hpp"
 #include "../math/vector.hpp"
 #include "collideable.hpp"
 #include "studio.hpp"
@@ -122,25 +123,22 @@ class entity_t
 public:
 	bool is_player()
 	{
-		using original_fn = bool(__thiscall*)(entity_t*);
-		return (*(original_fn**)this)[153](this);
+		return utilities::get().call_vfunc<153, bool>(this);
 	}
 
 	bool is_weapon()
 	{
-		using original_fn = bool(__thiscall*)(entity_t*);
-		return (*(original_fn**)this)[160](this);
+		return utilities::get().call_vfunc<160, bool>(this);
 	}
 
 	collideable_t* collideable()
 	{
-		using original_fn = collideable_t*(__thiscall*)(void*);
-		return (*(original_fn**)this)[3](this);
+		return utilities::get().call_vfunc<3, collideable_t*>(this);
 	}
 
 	void* animating()
 	{
-		return reinterpret_cast<void*>(uintptr_t(this) + 0x4);
+		return reinterpret_cast<void*>(std::uintptr_t(this) + 0x4);
 	}
 
 	bool setup_bones(matrix_t* out, int max_bones, int mask, float time)
@@ -148,20 +146,12 @@ public:
 		if (!this)
 			return false;
 
-		using original_fn = bool(__thiscall*)(void*, matrix_t*, int, int, float);
-		return (*(original_fn**)animating())[13](animating(), out, max_bones, mask, time);
+		return utilities::get().call_vfunc<13, bool>(animating(), out, max_bones, mask, time);
 	}
 
 	int draw_model(int flags, uint8_t alpha)
 	{
-		using original_fn = int(__thiscall*)(void*, int, uint8_t);
-		return (*(original_fn**)animating())[9](animating(), flags, alpha);
-	}
-
-	void update()
-	{
-		using original_fn = void(__thiscall*)(entity_t*);
-		(*(original_fn**)this)[218](this);
+		return utilities::get().call_vfunc<9, int>(animating(), flags, alpha);
 	}
 
 	netvar_fn(int, flags, "DT_BasePlayer->m_fFlags");

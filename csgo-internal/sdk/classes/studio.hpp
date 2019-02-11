@@ -86,7 +86,7 @@ struct studio_bone_t
 	int name_index;
 	inline char* const name(void) const
 	{
-		return ((char*)this) + name_index;
+		return const_cast<char*>(reinterpret_cast<const char*>(this)) + name_index;
 	}
 
 	int parent;
@@ -111,7 +111,7 @@ struct studio_bone_t
 		if (proc_index == 0)
 			return NULL;
 		else
-			return (void*)(((unsigned char*)this) + proc_index);
+			return reinterpret_cast<void*>(const_cast<unsigned char*>(reinterpret_cast<const unsigned char*>(this)) + proc_index);
 	};
 
 	int surface_prop_idx;
@@ -150,12 +150,12 @@ struct studio_hitbox_set_t
 
 	inline char* const name(void) const
 	{
-		return ((char*)this) + name_index;
+		return (const_cast<char*>(reinterpret_cast<const char*>(this))) + name_index;
 	}
 
 	inline studio_box_t* hitbox(int i) const
 	{
-		return (studio_box_t*)(((unsigned char*)this) + hitbox_index) + i;
+		return reinterpret_cast<studio_box_t*>(const_cast<unsigned char*>(reinterpret_cast<const unsigned char*>(this)) + hitbox_index) + i;
 	}
 };
 
@@ -194,7 +194,7 @@ public:
 		if (i > hitbox_sets_count)
 			return nullptr;
 
-		return (studio_hitbox_set_t*)((uint8_t*)this + hitbox_set_index) + i;
+		return reinterpret_cast<studio_hitbox_set_t*>(reinterpret_cast<std::uint8_t*>(this) + hitbox_set_index) + i;
 	}
 
 	studio_bone_t* bone(int i)
@@ -202,6 +202,6 @@ public:
 		if (i > bones_count)
 			return nullptr;
 
-		return (studio_bone_t*)((uint8_t*)this + bone_index) + i;
+		return reinterpret_cast<studio_bone_t*>(reinterpret_cast<std::uint8_t*>(this) + bone_index) + i;
 	}
 };

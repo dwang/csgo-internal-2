@@ -6,7 +6,7 @@ protect_guard::protect_guard(void* base, std::size_t length, std::uint32_t flags
 	this->base = base;
 	this->length = length;
 
-	if (!VirtualProtect(this->base, this->length, flags, (unsigned long*)&this->old))
+	if (!VirtualProtect(this->base, this->length, flags, reinterpret_cast<unsigned long*>(&this->old)))
 	{
 		throw std::runtime_error(
 			utilities::get().format(
@@ -20,7 +20,7 @@ protect_guard::protect_guard(void* base, std::size_t length, std::uint32_t flags
 
 protect_guard::~protect_guard()
 {
-	VirtualProtect(this->base, this->length, this->old, (unsigned long*)&this->old);
+	VirtualProtect(this->base, this->length, this->old, reinterpret_cast<unsigned long*>(&this->old));
 }
 
 size_t vmt_hook::estimate_table_length(std::uintptr_t* table_start)
@@ -41,7 +41,7 @@ size_t vmt_hook::estimate_table_length(std::uintptr_t* table_start)
 void vmt_hook::setup(void* class_base)
 {
 	this->class_base = class_base;
-	this->old_table = *(std::uintptr_t**)class_base;
+	this->old_table = *reinterpret_cast<std::uintptr_t**>(class_base);
 
 	this->table_length = this->estimate_table_length(this->old_table) * sizeof(std::uintptr_t);
 
@@ -58,7 +58,7 @@ void vmt_hook::setup(void* class_base)
 		auto guard = protect_guard(this->class_base, sizeof(std::uintptr_t), 4);
 
 		this->new_table[0] = this->old_table[-1];
-		*(uintptr_t**)this->class_base = &this->new_table[1];
+		*reinterpret_cast<std::uintptr_t**>(this->class_base) = &this->new_table[1];
 	}
 	catch (...)
 	{
@@ -77,7 +77,7 @@ void vmt_hook::release()
 			{
 				auto guard = protect_guard { this->class_base, sizeof uintptr_t, 4 };
 
-				*(uintptr_t**)this->class_base = this->old_table;
+				*reinterpret_cast<uintptr_t**>(this->class_base) = this->old_table;
 				this->old_table = nullptr;
 			}
 		}

@@ -23,6 +23,7 @@ public:
 
 	struct misc
 	{
+		bool stream_proof = true;
 		bool bunnyhop = false;
 	} misc;
 };

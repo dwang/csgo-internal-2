@@ -49,8 +49,8 @@ std::uint8_t* utilities::pattern_scan(void* module, const char* signature)
 		return bytes;
 	};
 
-	auto dos_headers = (PIMAGE_DOS_HEADER)module;
-	auto nt_headers = (PIMAGE_NT_HEADERS)((std::uint8_t*)module + dos_headers->e_lfanew);
+	auto dos_headers = reinterpret_cast<PIMAGE_DOS_HEADER>(module);
+	auto nt_headers = reinterpret_cast<PIMAGE_NT_HEADERS>(reinterpret_cast<std::uint8_t*>(module) + dos_headers->e_lfanew);
 
 	auto size_of_image = nt_headers->OptionalHeader.SizeOfImage;
 	auto pattern_bytes = pattern_to_byte(signature);

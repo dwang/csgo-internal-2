@@ -1,5 +1,8 @@
 #pragma once
+
 #include <cstdint>
+
+#include "../utilities/utilities.hpp"
 #include "../../sdk/math/vector.hpp"
 
 struct player_info_t
@@ -28,47 +31,40 @@ struct player_info_t
 class iv_engine_client
 {
 public:
-	int get_local_player()
+	void get_screen_size(int& width, int& height)
 	{
-		using original_fn = int(__thiscall*)(iv_engine_client*);
-		return (*(original_fn**)this)[12](this);
-	}
-
-	int get_player_for_user_id(int user_id)
-	{
-		using original_fn = int(__thiscall *)(iv_engine_client *, int);
-		return (*(original_fn **)this)[9](this, user_id);
+		return utilities::get().call_vfunc<5, void>(this, &width, &height);
 	}
 
 	void get_player_info(int index, player_info_t *info)
 	{
-		using original_fn = void(__thiscall *)(iv_engine_client *, int, player_info_t *);
-		return (*(original_fn**)this)[8](this, index, info);
+		return utilities::get().call_vfunc<8, void>(this, index, info);
 	}
 
-	void get_screen_size(int &width, int &height)
+	int get_player_for_user_id(int user_id)
 	{
-		using original_fn = void(__thiscall *)(iv_engine_client*, int &, int &);
-		return (*(original_fn**)this)[5](this, width, height);
+		return utilities::get().call_vfunc<9, int>(this, user_id);
 	}
 
-	void execute_cmd(const char* cmd)
+	int get_local_player()
 	{
-		using original_fn = void(__thiscall *)(iv_engine_client*, const char *);
-		return (*(original_fn**)this)[108](this, cmd);
-	}
-
-	void set_view_angles(vec3_t &angles)
-	{
-		using original_fn = void(__thiscall *)(iv_engine_client*, vec3_t &);
-		return (*(original_fn **)this)[19](this, angles);
+		return utilities::get().call_vfunc<12, int>(this);
 	}
 
 	vec3_t get_view_angles()
 	{
 		vec3_t temp;
-		using original_fn = void(__thiscall*)(iv_engine_client*, vec3_t &);
-		(*(original_fn**)this)[18](this, temp);
+		utilities::get().call_vfunc<18, void>(this, temp);
 		return temp;
+	}
+
+	void set_view_angles(vec3_t& angles)
+	{
+		return utilities::get().call_vfunc<19, void>(this, &angles);
+	}
+
+	void execute_cmd(const char* cmd)
+	{
+		return utilities::get().call_vfunc<108, void>(this, cmd);
 	}
 };

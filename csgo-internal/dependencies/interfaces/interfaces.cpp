@@ -30,7 +30,7 @@ void interfaces::initialize()
 	render_view = reinterpret_cast<i_render_view*>(capture_interface("engine.dll", "VEngineRenderView014"));
 	material_system = reinterpret_cast<i_material_system*>(capture_interface("materialsystem.dll", "VMaterialSystem080"));
 
-	direct3d = **(IDirect3DDevice9***)(utilities::get().pattern_scan(GetModuleHandleA("shaderapidx9.dll"), "A1 ? ? ? ? 50 8B 08 FF 51 0C") + 1);
-	input = *(i_input**)(utilities::get().pattern_scan(GetModuleHandleA("client_panorama.dll"), "B9 ? ? ? ? F3 0F 11 04 24 FF 50 10") + 1);
+	direct3d = **reinterpret_cast<IDirect3DDevice9***>(utilities::get().pattern_scan(GetModuleHandleA("shaderapidx9.dll"), "A1 ? ? ? ? 50 8B 08 FF 51 0C") + 1);
+	input = *reinterpret_cast<i_input**>(utilities::get().pattern_scan(GetModuleHandleA("client_panorama.dll"), "B9 ? ? ? ? F3 0F 11 04 24 FF 50 10") + 1);
 	globals = **reinterpret_cast<c_global_vars_base***>((*reinterpret_cast<uintptr_t**>(client)[0] + 27));
 }

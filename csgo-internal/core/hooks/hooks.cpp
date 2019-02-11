@@ -1,6 +1,7 @@
 #include "hooks.hpp"
 
 #include <memory>
+#include <intrin.h>
 
 #include "../../dependencies/interfaces/interfaces.hpp"
 #include "../../dependencies/utilities/globals.hpp"
@@ -44,7 +45,7 @@ void hooks::restore()
 	direct3d_hook->release();
 	renderview_hook->release();
 
-	SetWindowLongPtrA(globals::get().window, GWL_WNDPROC, (LONG)hooks::get().original_wndproc);
+	SetWindowLongPtrA(globals::get().window, GWL_WNDPROC, reinterpret_cast<LONG_PTR>(hooks::get().original_wndproc));
 }
 
 bool __stdcall hooks::create_move(float frame_time, c_usercmd* user_cmd)
@@ -92,7 +93,7 @@ void __stdcall hooks::paint_traverse(unsigned int panel, bool force_repaint, boo
 
 	if (!once)
 	{
-		PCHAR panel_char = (PCHAR)interfaces::get().panel->get_panel_name(panel);
+		PCHAR panel_char = const_cast<PCHAR>(interfaces::get().panel->get_panel_name(panel));
 		if (strstr(panel_char, "MatSystemTopPanel"))
 		{
 			_panel = panel;
@@ -117,6 +118,23 @@ long __stdcall hooks::end_scene(IDirect3DDevice9* device)
 		menu::get().initialize(device);
 		globals::get().d3d_init = true;
 	}
+
+	static uintptr_t gameoverlay_return_address = 0;
+
+	if (!gameoverlay_return_address)
+	{
+		MEMORY_BASIC_INFORMATION info;
+		VirtualQuery(_ReturnAddress(), &info, sizeof(MEMORY_BASIC_INFORMATION));
+
+		char mod[MAX_PATH];
+		GetModuleFileNameA((HMODULE)info.AllocationBase, mod, MAX_PATH);
+
+		if (strstr(mod, "gameoverlay"))
+			gameoverlay_return_address = reinterpret_cast<std::uintptr_t>(_ReturnAddress());
+	}
+
+	if (gameoverlay_return_address != reinterpret_cast<std::uintptr_t>(_ReturnAddress()) && settings::get().misc.stream_proof)
+		return o_end_scene(device);
 
 	interfaces::get().input->m_mouse_initiated = !menu::get().opened;
 
@@ -189,13 +207,9 @@ LRESULT __stdcall hooks::wndproc(HWND window, UINT message, WPARAM wparam, LPARA
 	{
 		auto button = GET_XBUTTON_WPARAM(wparam);
 		if (button == XBUTTON1)
-		{
 			globals::get().pressed[VK_XBUTTON1] = (message == WM_XBUTTONDOWN);
-		}
 		else if (button == XBUTTON2)
-		{
 			globals::get().pressed[VK_XBUTTON2] = (message == WM_XBUTTONDOWN);
-		}
 	}
 		break;
 	case WM_KEYDOWN:

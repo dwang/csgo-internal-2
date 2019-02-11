@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../../dependencies/utilities/utilities.hpp"
 #include "../math/vector.hpp"
 
 class collideable_t
@@ -7,13 +8,11 @@ class collideable_t
 public:
 	vec3_t& mins()
 	{
-		using original_fn = vec3_t&(__thiscall*)(void*);
-		return (*(original_fn**)this)[1](this);
+		return utilities::get().call_vfunc<1, vec3_t&>(this);
 	}
 
 	vec3_t& maxs()
 	{
-		using original_fn = vec3_t&(__thiscall*)(void*);
-		return (*(original_fn**)this)[2](this);
+		return utilities::get().call_vfunc<2, vec3_t&>(this);
 	}
 };

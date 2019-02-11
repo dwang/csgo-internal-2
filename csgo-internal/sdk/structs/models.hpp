@@ -20,7 +20,8 @@ struct model_render_info_t
 	int hitboxset;
 	unsigned short instance;
 
-	model_render_info_t() {
+	model_render_info_t()
+	{
 		model_to_world = NULL;
 		lighting_offset = NULL;
 		lighting_origin = NULL;

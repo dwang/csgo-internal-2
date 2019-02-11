@@ -79,7 +79,7 @@ void menu::initialize(IDirect3DDevice9* device)
 	{
 		ImGui::Checkbox("backtrack", &settings::get().aimbot.backtrack);
 		if (settings::get().aimbot.backtrack)
-			ImGui::SliderInt("backtrack ticks", &settings::get().aimbot.backtrack_ticks, 1, 12);
+			ImGui::SliderInt("ticks", &settings::get().aimbot.backtrack_ticks, 1, 12);
 	};
 
 	render_tab["visuals"] = []()
@@ -114,6 +114,7 @@ void menu::initialize(IDirect3DDevice9* device)
 	render_tab["misc"] = []()
 	{
 		ImGui::Checkbox("bunnyhop", &settings::get().misc.bunnyhop);
+		ImGui::Separator();
 		if (ImGui::Button("unload", ImVec2(100, 30)))
 			globals::get().unload = true;
 	};

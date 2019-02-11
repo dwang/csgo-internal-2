@@ -1,8 +1,10 @@
 #pragma once
+
 #include <string>
 #include "singleton.hpp"
 #include "../interfaces/interfaces.hpp"
 #include "../../sdk/misc/color.hpp"
+#include "utilities.hpp"
 
 enum font_flags
 {
