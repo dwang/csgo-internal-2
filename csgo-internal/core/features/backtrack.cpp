@@ -26,7 +26,7 @@ void backtrack::create_move(c_usercmd* user_cmd)
 		if (player->team() == globals::get().local_player->team())
 			continue;
 
-		data[i][user_cmd->command_number % settings::get().aimbot.backtrack_ticks + 1] = backtrack_tick { player->simulation_time(), player->get_bone_position(8) };
+		data[i][user_cmd->command_number % settings::get().aimbot.backtrack_ticks + 1] = backtrack_tick{ player->simulation_time(), player->get_bone_position(8) };
 		vec3_t view_direction = angle_vector(user_cmd->view_angles);
 		float fov = distance_point_to_line(player->get_bone_position(8), globals::get().local_player->get_bone_position(8), view_direction);
 

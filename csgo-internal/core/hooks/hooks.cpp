@@ -29,7 +29,7 @@ void hooks::initialize()
 	renderview_hook->hook<indexes::scene_end>(scene_end);
 
 	globals::get().window = FindWindowA("Valve001", nullptr);
-	original_wndproc = (WNDPROC)SetWindowLongPtrA(globals::get().window, GWL_WNDPROC, (LONG)wndproc);
+	original_wndproc = reinterpret_cast<WNDPROC>(SetWindowLongPtrA(globals::get().window, GWL_WNDPROC, reinterpret_cast<LONG_PTR>(wndproc)));
 
 	render::get().setup_fonts();
 }
