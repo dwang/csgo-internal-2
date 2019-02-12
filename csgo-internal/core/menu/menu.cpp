@@ -92,9 +92,10 @@ void menu::initialize(IDirect3DDevice9* device)
 			{
 				bool is_selected = (items[settings::get().visuals.esp_mode] == items[n]);
 				if (ImGui::Selectable(items[n], is_selected))
+				{
 					settings::get().visuals.esp_mode = n;
-				if (is_selected)
 					ImGui::SetItemDefaultFocus();
+				}
 			}
 			ImGui::EndCombo();
 		}
@@ -114,6 +115,7 @@ void menu::initialize(IDirect3DDevice9* device)
 	render_tab["misc"] = []()
 	{
 		ImGui::Checkbox("bunnyhop", &settings::get().misc.bunnyhop);
+		ImGui::Checkbox("stream proof", &settings::get().misc.stream_proof);
 		ImGui::Separator();
 		if (ImGui::Button("unload", ImVec2(100, 30)))
 			globals::get().unload = true;
