@@ -4,12 +4,8 @@
 #include "settings.hpp"
 #include "../../dependencies/utilities/globals.hpp"
 
-void menu::initialize(IDirect3DDevice9* device)
+void menu::initialize()
 {
-	ImGui::CreateContext();
-	ImGui_ImplWin32_Init(globals::get().window);
-	ImGui_ImplDX9_Init(device);
-
 	style.Alpha = 1.0f;                              // Global alpha applies to everything in ImGui
 	style.WindowPadding = ImVec2(10, 10);            // Padding within a window
 	style.WindowMinSize = ImVec2(100, 100);          // Minimum window size
@@ -35,6 +31,7 @@ void menu::initialize(IDirect3DDevice9* device)
 	style.AntiAliasedFill = true;                    // Enable anti-aliasing on filled shapes (rounded rectangles, circles, etc.)
 	style.CurveTessellationTol = 1.25f;              // Tessellation tolerance. Decrease for highly tessellated curves (higher quality, more polygons), increase to reduce quality.
 
+	
 	style.Colors[ImGuiCol_Text] = ImVec4(0.86f, 0.93f, 0.89f, 0.78f);
 	style.Colors[ImGuiCol_TextDisabled] = ImVec4(0.86f, 0.93f, 0.89f, 0.28f);
 	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.13f, 0.14f, 0.17f, 1.00f);
@@ -74,7 +71,7 @@ void menu::initialize(IDirect3DDevice9* device)
 	style.Colors[ImGuiCol_TextSelectedBg] = ImVec4(0.15f, 0.60f, 0.78f, 0.43f);
 	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.20f, 0.22f, 0.27f, 0.9f);
 	style.Colors[ImGuiCol_ModalWindowDarkening] = ImVec4(0.20f, 0.22f, 0.27f, 0.73f);
-
+	
 	render_tab["aimbot"] = []()
 	{
 		ImGui::Checkbox("backtrack", &settings::get().aimbot.backtrack);
@@ -116,7 +113,6 @@ void menu::initialize(IDirect3DDevice9* device)
 	{
 		ImGui::Checkbox("bunnyhop", &settings::get().misc.bunnyhop);
 		ImGui::Checkbox("stream proof", &settings::get().misc.stream_proof);
-		ImGui::Separator();
 		if (ImGui::Button("unload", ImVec2(100, 30)))
 			globals::get().unload = true;
 	};

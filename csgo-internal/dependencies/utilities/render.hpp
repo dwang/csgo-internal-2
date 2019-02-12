@@ -1,10 +1,22 @@
 #pragma once
 
 #include <string>
+
+#include <d3d9.h>
+#include <d3dx9.h>
+#pragma comment(lib, "d3d9.lib")
+#pragma comment(lib, "d3dx9.lib")
+
+#include "../../dependencies/imgui/imgui.h"
+#include "../../dependencies/imgui/imgui_internal.h"
+#include "../../dependencies/imgui/imgui_impl_dx9.h"
+#include "../../dependencies/imgui/imgui_impl_win32.h"
+
 #include "singleton.hpp"
+#include "globals.hpp"
+#include "utilities.hpp"
 #include "../interfaces/interfaces.hpp"
 #include "../../sdk/misc/color.hpp"
-#include "utilities.hpp"
 
 enum font_flags
 {
@@ -26,23 +38,22 @@ enum font_flags
 class render : public singleton<render>
 {
 public:
-	DWORD watermark_font;
+	DWORD default_font;
 	DWORD esp_font;
 
 public:
-	void setup_fonts()
+	void initialize(IDirect3DDevice9* device)
 	{
-		static bool once = false;
-		if (!once)
-		{
-			watermark_font = interfaces::get().surface->font_create();
-			esp_font = interfaces::get().surface->font_create();
+		ImGui::CreateContext();
+		ImGui_ImplWin32_Init(globals::get().window);
+		ImGui_ImplDX9_Init(device);
 
-			interfaces::get().surface->set_font_glyph(watermark_font, "Tahoma", 20, FW_MEDIUM, 0, 0, font_flags::fontflag_outline);
-			interfaces::get().surface->set_font_glyph(esp_font, "Verdana", 20, FW_BOLD, 0, 0, font_flags::fontflag_dropshadow);
+		default_font = interfaces::get().surface->font_create();
+		esp_font = interfaces::get().surface->font_create();
 
-			once = true;
-		}
+		interfaces::get().surface->set_font_glyph(default_font, "Tahoma", 20, FW_MEDIUM, 0, 0, font_flags::fontflag_outline);
+		interfaces::get().surface->set_font_glyph(esp_font, "Verdana", 20, FW_BOLD, 0, 0, font_flags::fontflag_dropshadow);
+
 	}
 
 	void draw_line(int x1, int y1, int x2, int y2, color draw_color)
@@ -51,7 +62,7 @@ public:
 		interfaces::get().surface->draw_line(x1, y1, x2, y2);
 	}
 
-	void draw_text(int x, int y, unsigned long font, const char *string, bool text_centered, color draw_color)
+	void draw_text(int x, int y, unsigned long font, const char* string, bool text_centered, color draw_color)
 	{
 		va_list va_alist;
 		char buf[1024];
@@ -143,9 +154,9 @@ public:
 	vec2_t get_screen_size(vec2_t area)
 	{
 		static int old_w, old_h;
-		interfaces::get().engine->get_screen_size((int &)area.x, (int &)area.y);
+		interfaces::get().engine->get_screen_size((int&)area.x, (int&)area.y);
 
-		if ((int &)area.x != old_w || (int &)area.y != old_h)
+		if ((int&)area.x != old_w || (int&)area.y != old_h)
 		{
 			old_w = (int&)area.x;
 			old_h = (int&)area.y;

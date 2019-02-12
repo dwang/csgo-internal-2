@@ -30,8 +30,6 @@ void hooks::initialize()
 
 	globals::get().window = FindWindowA("Valve001", nullptr);
 	original_wndproc = reinterpret_cast<WNDPROC>(SetWindowLongPtrA(globals::get().window, GWL_WNDPROC, reinterpret_cast<LONG_PTR>(wndproc)));
-
-	render::get().setup_fonts();
 }
 
 void hooks::restore()
@@ -103,7 +101,7 @@ void __stdcall hooks::paint_traverse(unsigned int panel, bool force_repaint, boo
 	else if (_panel == panel)
 	{
 		if (settings::get().visuals.watermark)
-			render::get().draw_text(1, 1, render::get().watermark_font, "csgo-internal - " __DATE__, false, color(255, 255, 255));
+			render::get().draw_text(1, 1, render::get().default_font, "csgo-internal - " __DATE__, false, color(255, 255, 255));
 
 		visuals::get().render();
 	}
@@ -115,7 +113,8 @@ long __stdcall hooks::end_scene(IDirect3DDevice9* device)
 
 	if (!globals::get().d3d_init)
 	{
-		menu::get().initialize(device);
+		render::get().initialize(device);
+		menu::get().initialize();
 		globals::get().d3d_init = true;
 	}
 
