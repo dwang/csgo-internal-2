@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../math/vector.hpp"
+#include "../misc/vector.hpp"
 
 struct vertex_t
 {

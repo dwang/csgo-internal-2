@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../dependencies/utilities/singleton.hpp"
+#include "../../utilities/singleton.hpp"
 #include "../../sdk/classes/c_usercmd.hpp"
 
 class bunnyhop : public singleton<bunnyhop>

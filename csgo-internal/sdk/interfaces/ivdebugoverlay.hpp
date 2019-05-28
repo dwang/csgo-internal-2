@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../utilities/utilities.hpp"
-#include "../../sdk/math/vector.hpp"
+#include "../../utilities/utilities.hpp"
+#include "../../sdk/misc/vector.hpp"
 
 class iv_debug_overlay
 {

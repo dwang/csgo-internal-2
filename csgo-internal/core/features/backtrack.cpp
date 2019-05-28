@@ -1,9 +1,9 @@
 #include "backtrack.hpp"
 
-#include "../../dependencies/utilities/globals.hpp"
-#include "../../dependencies/interfaces/interfaces.hpp"
-#include "../../dependencies/utilities/utilities.hpp"
-#include "../menu/settings.hpp"
+#include "../../utilities/globals.hpp"
+#include "../../utilities/interfaces.hpp"
+#include "../../utilities/utilities.hpp"
+#include "../gui/settings.hpp"
 
 void backtrack::create_move(c_usercmd* user_cmd)
 {

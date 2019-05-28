@@ -3,12 +3,12 @@
 #include <memory>
 #include <intrin.h>
 
-#include "../../dependencies/interfaces/interfaces.hpp"
-#include "../../dependencies/utilities/globals.hpp"
-#include "../../dependencies/utilities/render.hpp"
-#include "../../dependencies/utilities/hotkeys.hpp"
+#include "../../utilities/interfaces.hpp"
+#include "../../utilities/globals.hpp"
+#include "../../utilities/render.hpp"
+#include "../../utilities/hotkeys.hpp"
 #include "../features/features.hpp"
-#include "../menu/settings.hpp"
+#include "../gui/settings.hpp"
 
 void hooks::initialize()
 {
@@ -118,7 +118,7 @@ long __stdcall hooks::end_scene(IDirect3DDevice9* device)
 		globals::get().d3d_init = true;
 	}
 
-	static uintptr_t gameoverlay_return_address = 0;
+	static std::uintptr_t gameoverlay_return_address = 0;
 
 	if (!gameoverlay_return_address)
 	{
@@ -134,7 +134,7 @@ long __stdcall hooks::end_scene(IDirect3DDevice9* device)
 
 	if (gameoverlay_return_address != reinterpret_cast<std::uintptr_t>(_ReturnAddress()) && settings::get().misc.stream_proof)
 		return o_end_scene(device);
-
+		
 	interfaces::get().input->m_mouse_initiated = !menu::get().opened;
 
 	if (!interfaces::get().input->m_mouse_initiated)
@@ -166,7 +166,6 @@ long __stdcall hooks::reset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* pre
 
 	if (globals::get().d3d_init)
 	{
-		printf("resetting draw manager\n");
 		ImGui_ImplDX9_InvalidateDeviceObjects();
 		auto hr = o_reset(device, presentation_parameters);
 		ImGui_ImplDX9_CreateDeviceObjects();

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../dependencies/utilities/utilities.hpp"
+#include "../../utilities/utilities.hpp"
 
 using material_handle_t = unsigned short;
 class i_material

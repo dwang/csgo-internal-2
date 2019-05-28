@@ -2,8 +2,8 @@
 
 #include <cstdint>
 
-#include "../utilities/utilities.hpp"
-#include "../../sdk/math/vector.hpp"
+#include "../../utilities/utilities.hpp"
+#include "../../sdk/misc/vector.hpp"
 
 struct player_info_t
 {

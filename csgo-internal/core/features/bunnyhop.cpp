@@ -1,7 +1,6 @@
 #include "bunnyhop.hpp"
 
-#include "../../dependencies/utilities/globals.hpp"
-#include "../../sdk/sdk.hpp"
+#include "../../utilities/globals.hpp"
 
 void bunnyhop::create_move(c_usercmd* user_cmd)
 {

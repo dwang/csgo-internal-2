@@ -1,4 +1,5 @@
 #include "vector.hpp"
+#include <cmath>
 
 vec3_t::vec3_t()
 {

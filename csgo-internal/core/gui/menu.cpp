@@ -2,7 +2,7 @@
 
 #include <vector>
 #include "settings.hpp"
-#include "../../dependencies/utilities/globals.hpp"
+#include "../../utilities/globals.hpp"
 
 void menu::initialize()
 {
@@ -31,7 +31,7 @@ void menu::initialize()
 	style.AntiAliasedFill = true;                    // Enable anti-aliasing on filled shapes (rounded rectangles, circles, etc.)
 	style.CurveTessellationTol = 1.25f;              // Tessellation tolerance. Decrease for highly tessellated curves (higher quality, more polygons), increase to reduce quality.
 
-	
+
 	style.Colors[ImGuiCol_Text] = ImVec4(0.86f, 0.93f, 0.89f, 0.78f);
 	style.Colors[ImGuiCol_TextDisabled] = ImVec4(0.86f, 0.93f, 0.89f, 0.28f);
 	style.Colors[ImGuiCol_WindowBg] = ImVec4(0.13f, 0.14f, 0.17f, 1.00f);
@@ -71,7 +71,7 @@ void menu::initialize()
 	style.Colors[ImGuiCol_TextSelectedBg] = ImVec4(0.15f, 0.60f, 0.78f, 0.43f);
 	style.Colors[ImGuiCol_PopupBg] = ImVec4(0.20f, 0.22f, 0.27f, 0.9f);
 	style.Colors[ImGuiCol_ModalWindowDarkening] = ImVec4(0.20f, 0.22f, 0.27f, 0.73f);
-	
+
 	render_tab["aimbot"] = []()
 	{
 		ImGui::Checkbox("backtrack", &settings::get().aimbot.backtrack);

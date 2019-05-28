@@ -1,8 +1,7 @@
 #include "interfaces.hpp"
 
 #include <Windows.h>
-#include "../utilities/utilities.hpp"
-#include "../../core/menu/menu.hpp"
+#include "utilities.hpp"
 
 void* interfaces::capture_interface(const char* mod, const char* iface)
 {

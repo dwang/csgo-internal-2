@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../utilities/utilities.hpp"
-#include "../../sdk/structs/vertex_t.hpp"
+#include "../../utilities/utilities.hpp"
+#include "../../sdk/misc/vertex_t.hpp"
 
 class i_surface
 {

@@ -1,13 +1,14 @@
 #pragma once
 
-#include "singleton.hpp"
-#include "fnv.hpp"
-#include "../../sdk/classes/client_class.hpp"
-#include "../../sdk/classes/recv_props.hpp"
 #include <string>
 #include <vector>
 #include <map>
 #include <fstream>
+
+#include "singleton.hpp"
+#include "fnv.hpp"
+#include "../sdk/classes/client_class.hpp"
+#include "../sdk/classes/recv_props.hpp"
 
 class netvar_manager : public singleton<netvar_manager>
 {

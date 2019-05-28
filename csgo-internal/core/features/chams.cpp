@@ -1,8 +1,8 @@
 #include "chams.hpp"
 
-#include "../../dependencies/interfaces/interfaces.hpp"
-#include "../menu/settings.hpp"
-#include "../../dependencies/utilities/globals.hpp"
+#include "../../utilities/interfaces.hpp"
+#include "../../utilities/globals.hpp"
+#include "../gui/settings.hpp"
 
 void chams::setup()
 {

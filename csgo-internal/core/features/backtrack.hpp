@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../dependencies/utilities/singleton.hpp"
+#include "../../utilities/singleton.hpp"
 #include "../../sdk/sdk.hpp"
 
 class backtrack : public singleton<backtrack>

@@ -1,8 +1,9 @@
 #pragma once
 
-#include "../../dependencies/utilities/singleton.hpp"
-#include "../../dependencies/interfaces/ivengineclient.hpp"
-#include "../../sdk/sdk.hpp"
+#include "../../utilities/singleton.hpp"
+#include "../../sdk/interfaces/ivengineclient.hpp"
+#include "../../sdk/classes/entity.hpp"
+#include "../../sdk/misc/box.hpp"
 
 class visuals : public singleton<visuals>
 {

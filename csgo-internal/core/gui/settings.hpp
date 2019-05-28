@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../dependencies/utilities/singleton.hpp"
+#include "../../utilities/singleton.hpp"
 
 class settings : public singleton<settings>
 {

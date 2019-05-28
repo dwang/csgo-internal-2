@@ -7,10 +7,8 @@
 #include "classes/studio.hpp"
 #include "classes/materials.hpp"
 
-#include "math/vector.hpp"
-
+#include "misc/vector.hpp"
 #include "misc/color.hpp"
-
-#include "structs/vertex_t.hpp"
-#include "structs/box.hpp"
-#include "structs/models.hpp"
+#include "misc/vertex_t.hpp"
+#include "misc/box.hpp"
+#include "misc/models.hpp"

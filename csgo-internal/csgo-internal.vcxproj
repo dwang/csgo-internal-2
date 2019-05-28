@@ -14,19 +14,19 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{B77D76FD-D047-4AB9-8253-AB5E7F4FAD4B}</ProjectGuid>
     <RootNamespace>csgointernal</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -85,17 +85,17 @@
     <ClCompile Include="core\features\visuals.cpp" />
     <ClCompile Include="core\hooks\hooks.cpp" />
     <ClCompile Include="core\main.cpp" />
-    <ClCompile Include="core\menu\menu.cpp" />
-    <ClCompile Include="dependencies\imgui\imgui_impl_dx9.cpp" />
-    <ClCompile Include="dependencies\imgui\imgui_impl_win32.cpp" />
-    <ClCompile Include="dependencies\imgui\imgui.cpp" />
-    <ClCompile Include="dependencies\imgui\imgui_draw.cpp" />
-    <ClCompile Include="dependencies\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="dependencies\interfaces\interfaces.cpp" />
-    <ClCompile Include="dependencies\utilities\netvars.cpp" />
-    <ClCompile Include="dependencies\utilities\utilities.cpp" />
-    <ClCompile Include="dependencies\utilities\vmt.cpp" />
-    <ClCompile Include="sdk\math\vector.cpp" />
+    <ClCompile Include="core\gui\menu.cpp" />
+    <ClCompile Include="imgui\imgui.cpp" />
+    <ClCompile Include="imgui\imgui_draw.cpp" />
+    <ClCompile Include="imgui\imgui_impl_dx9.cpp" />
+    <ClCompile Include="imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="utilities\interfaces.cpp" />
+    <ClCompile Include="utilities\netvars.cpp" />
+    <ClCompile Include="utilities\utilities.cpp" />
+    <ClCompile Include="utilities\vmt.cpp" />
+    <ClCompile Include="sdk\misc\vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\features\backtrack.hpp" />
@@ -104,52 +104,52 @@
     <ClInclude Include="core\features\features.hpp" />
     <ClInclude Include="core\features\visuals.hpp" />
     <ClInclude Include="core\hooks\hooks.hpp" />
-    <ClInclude Include="core\menu\menu.hpp" />
-    <ClInclude Include="core\menu\settings.hpp" />
-    <ClInclude Include="dependencies\interfaces\cglobalvarsbase.hpp" />
-    <ClInclude Include="dependencies\interfaces\imaterialsystem.hpp" />
-    <ClInclude Include="dependencies\interfaces\irenderview.hpp" />
-    <ClInclude Include="dependencies\interfaces\ivdebugoverlay.hpp" />
-    <ClInclude Include="dependencies\interfaces\iinputsystem.hpp" />
-    <ClInclude Include="dependencies\imgui\imgui_impl_dx9.h" />
-    <ClInclude Include="dependencies\imgui\imgui_impl_win32.h" />
-    <ClInclude Include="dependencies\imgui\imconfig.h" />
-    <ClInclude Include="dependencies\imgui\imgui.h" />
-    <ClInclude Include="dependencies\imgui\imgui_internal.h" />
-    <ClInclude Include="dependencies\imgui\imstb_rectpack.h" />
-    <ClInclude Include="dependencies\imgui\imstb_textedit.h" />
-    <ClInclude Include="dependencies\imgui\imstb_truetype.h" />
-    <ClInclude Include="dependencies\interfaces\ibaseclientdll.hpp" />
-    <ClInclude Include="dependencies\interfaces\icliententitylist.hpp" />
-    <ClInclude Include="dependencies\interfaces\iclientmode.hpp" />
-    <ClInclude Include="dependencies\interfaces\iinput.hpp" />
-    <ClInclude Include="dependencies\interfaces\interfaces.hpp" />
-    <ClInclude Include="dependencies\interfaces\ipanel.hpp" />
-    <ClInclude Include="dependencies\interfaces\isurface.hpp" />
-    <ClInclude Include="dependencies\interfaces\ivengineclient.hpp" />
-    <ClInclude Include="dependencies\interfaces\ivmodelinfo.hpp" />
-    <ClInclude Include="dependencies\utilities\fnv.hpp" />
-    <ClInclude Include="dependencies\utilities\globals.hpp" />
-    <ClInclude Include="dependencies\utilities\hotkeys.hpp" />
-    <ClInclude Include="dependencies\interfaces\ivmodelrender.hpp" />
-    <ClInclude Include="dependencies\utilities\netvars.hpp" />
-    <ClInclude Include="dependencies\utilities\render.hpp" />
-    <ClInclude Include="dependencies\utilities\singleton.hpp" />
-    <ClInclude Include="dependencies\utilities\utilities.hpp" />
-    <ClInclude Include="dependencies\utilities\vmt.hpp" />
+    <ClInclude Include="core\gui\menu.hpp" />
+    <ClInclude Include="core\gui\settings.hpp" />
+    <ClInclude Include="imgui\imconfig.h" />
+    <ClInclude Include="imgui\imgui.h" />
+    <ClInclude Include="imgui\imgui_impl_dx9.h" />
+    <ClInclude Include="imgui\imgui_impl_win32.h" />
+    <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\imstb_rectpack.h" />
+    <ClInclude Include="imgui\imstb_textedit.h" />
+    <ClInclude Include="imgui\imstb_truetype.h" />
+    <ClInclude Include="sdk\interfaces\cglobalvarsbase.hpp" />
+    <ClInclude Include="sdk\interfaces\imaterialsystem.hpp" />
+    <ClInclude Include="sdk\interfaces\irenderview.hpp" />
+    <ClInclude Include="sdk\interfaces\ivdebugoverlay.hpp" />
+    <ClInclude Include="sdk\interfaces\iinputsystem.hpp" />
+    <ClInclude Include="sdk\interfaces\ibaseclientdll.hpp" />
+    <ClInclude Include="sdk\interfaces\icliententitylist.hpp" />
+    <ClInclude Include="sdk\interfaces\iclientmode.hpp" />
+    <ClInclude Include="sdk\interfaces\iinput.hpp" />
+    <ClInclude Include="sdk\misc\box.hpp" />
+    <ClInclude Include="utilities\interfaces.hpp" />
+    <ClInclude Include="sdk\interfaces\ipanel.hpp" />
+    <ClInclude Include="sdk\interfaces\isurface.hpp" />
+    <ClInclude Include="sdk\interfaces\ivengineclient.hpp" />
+    <ClInclude Include="sdk\interfaces\ivmodelinfo.hpp" />
+    <ClInclude Include="utilities\fnv.hpp" />
+    <ClInclude Include="utilities\globals.hpp" />
+    <ClInclude Include="utilities\hotkeys.hpp" />
+    <ClInclude Include="sdk\interfaces\ivmodelrender.hpp" />
+    <ClInclude Include="utilities\netvars.hpp" />
+    <ClInclude Include="utilities\render.hpp" />
+    <ClInclude Include="utilities\singleton.hpp" />
+    <ClInclude Include="utilities\utilities.hpp" />
+    <ClInclude Include="utilities\vmt.hpp" />
     <ClInclude Include="sdk\classes\client_class.hpp" />
     <ClInclude Include="sdk\classes\collideable.hpp" />
     <ClInclude Include="sdk\classes\c_usercmd.hpp" />
     <ClInclude Include="sdk\classes\entity.hpp" />
     <ClInclude Include="sdk\classes\recv_props.hpp" />
     <ClInclude Include="sdk\classes\studio.hpp" />
-    <ClInclude Include="sdk\math\vector.hpp" />
+    <ClInclude Include="sdk\misc\vector.hpp" />
     <ClInclude Include="sdk\misc\color.hpp" />
     <ClInclude Include="sdk\sdk.hpp" />
-    <ClInclude Include="sdk\structs\box.hpp" />
     <ClInclude Include="sdk\classes\materials.hpp" />
-    <ClInclude Include="sdk\structs\models.hpp" />
-    <ClInclude Include="sdk\structs\vertex_t.hpp" />
+    <ClInclude Include="sdk\misc\models.hpp" />
+    <ClInclude Include="sdk\misc\vertex_t.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

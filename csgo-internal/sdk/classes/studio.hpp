@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-#include "../math/vector.hpp"
+#include "../misc/vector.hpp"
 
 using quaternion = float[4];
 using rad_euler = float[3];

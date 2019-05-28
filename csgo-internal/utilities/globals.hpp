@@ -3,7 +3,7 @@
 #include <array>
 
 #include "singleton.hpp"
-#include "../../sdk/sdk.hpp"
+#include "../sdk/classes/entity.hpp"
 
 class globals : public singleton<globals>
 {

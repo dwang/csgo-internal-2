@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../dependencies/utilities/utilities.hpp"
-#include "../math/vector.hpp"
+#include "../../utilities/utilities.hpp"
+#include "../misc/vector.hpp"
 
 class collideable_t
 {

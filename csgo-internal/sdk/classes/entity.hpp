@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../../dependencies/utilities/netvars.hpp"
-#include "../../dependencies/utilities/utilities.hpp"
-#include "../math/vector.hpp"
+#include "../../utilities/netvars.hpp"
+#include "../../utilities/utilities.hpp"
+#include "../misc/vector.hpp"
 #include "collideable.hpp"
 #include "studio.hpp"
 

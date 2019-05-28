@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../utilities/utilities.hpp"
-#include "../../sdk/structs/models.hpp"
-#include "../../sdk/classes/studio.hpp"
+#include "../../utilities/utilities.hpp"
+#include "../misc/models.hpp"
+#include "../classes/studio.hpp"
 
 class iv_model_info
 {

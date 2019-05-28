@@ -1,9 +1,9 @@
 #include "visuals.hpp"
 
-#include "../menu/settings.hpp"
-#include "../../dependencies/interfaces/interfaces.hpp"
-#include "../../dependencies/utilities/globals.hpp"
-#include "../../dependencies/utilities/render.hpp"
+#include "../gui/settings.hpp"
+#include "../../utilities/interfaces.hpp"
+#include "../../utilities/globals.hpp"
+#include "../../utilities/render.hpp"
 
 bool visuals::get_bounding_box(entity_t* entity, box& in)
 {
@@ -92,11 +92,10 @@ void visuals::render()
 
 void visuals::draw_player_box(entity_t* player, box bounding_box)
 {
-	render::get().draw_outline(bounding_box.x, bounding_box.y, bounding_box.w, bounding_box.h, color(255, 255, 255, 255));
+	render::get().draw_rect(bounding_box.x, bounding_box.y, bounding_box.w, bounding_box.h, color(255, 255, 255, 255));
 }
 
 void visuals::draw_player_name(entity_t* player, player_info_t player_info, box bounding_box)
 {
-	RECT text_size = render::get().get_text_size(render::get().esp_font, player_info.name);
-	render::get().draw_text(bounding_box.x + (bounding_box.w / 2) - (text_size.right / 2), bounding_box.y - 20, render::get().esp_font, player_info.name, false, color(255, 255, 255, 255));
+	render::get().draw_text(bounding_box.x + (bounding_box.w / 2), bounding_box.y - 20, render::get().esp_font, player_info.name, true, color(255, 255, 255, 255));
 }

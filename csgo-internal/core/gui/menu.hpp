@@ -2,8 +2,8 @@
 
 #include <map>
 
-#include "../../dependencies/utilities/render.hpp"
-#include "../../dependencies/utilities/singleton.hpp"
+#include "../../utilities/singleton.hpp"
+#include "../../utilities/render.hpp"
 
 class menu : public singleton<menu>
 {
@@ -12,8 +12,9 @@ private:
 	std::map<std::string, void(*)()> render_tab;
 
 public:
-	bool opened;
 	ImGuiStyle style;
+	bool opened;
+	
 	void initialize();
 	void render();
 };
